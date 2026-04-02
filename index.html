@@ -80,6 +80,55 @@
       .card ul li+li{margin-top:.3rem}
       .stefano-avatar{width:110px;height:110px;border-radius:var(--radius-full);object-fit:cover;border:2px solid oklch(from var(--color-primary) l c h/.25);box-shadow:var(--shadow-md);float:left;margin-right:var(--space-5);margin-bottom:var(--space-3)}
       .badge{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding-inline:var(--space-3);padding-block:.2rem;font-size:var(--text-xs);background:color-mix(in oklab,var(--color-primary) 12%,var(--color-surface-2));color:var(--color-primary-active)}
+
+      /* Staff mini inside event card */
+      .event-staff {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        padding: var(--space-3) 0;
+        border-top: 1px solid oklch(from var(--color-border) l c h / 0.5);
+      }
+      .event-staff-member {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+      .event-staff-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-full);
+        object-fit: cover;
+        border: 1px solid oklch(from var(--color-primary) l c h / 0.3);
+        flex-shrink: 0;
+      }
+      .event-staff-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .event-staff-name {
+        font-size: var(--text-xs);
+        font-weight: 600;
+        color: var(--color-text);
+      }
+      .event-staff-role {
+        font-size: 0.65rem;
+        color: var(--color-text-muted);
+      }
+      .event-contact {
+        border-top: 1px solid oklch(from var(--color-border) l c h / 0.5);
+        padding-top: var(--space-3);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .event-contact-label {
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+        font-weight: 500;
+      }
+
       /* Events */
       .event-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
       .event-card{background:var(--color-surface);border-radius:var(--radius-xl);border:1px solid oklch(from var(--color-border) l c h/.85);box-shadow:var(--shadow-md);display:flex;flex-direction:column;overflow:hidden}
@@ -253,11 +302,43 @@
                     <li>Meditazioni guidate</li>
                   </ul>
                 </details>
-                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-staff">
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Stefano Balducci</span>
+                      <span class="event-staff-role">Guarigione quantica</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg" alt="Paolo Bardi"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Paolo Bardi</span>
+                      <span class="event-staff-role">Registri Akashici</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg" alt="Miretta Frediani"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Miretta Frediani</span>
+                      <span class="event-staff-role">Pranoterapia · Reiki</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="./federica.jpg" alt="Federica Continanza"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Federica Continanza</span>
+                      <span class="event-staff-role">Danze sciamaniche</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="event-actions">
                   <a class="btn-event btn-map" href="https://maps.google.com/?q=Circolo+La+Loggetta+Via+Aretina+301+Firenze" target="_blank" rel="noopener">📍 Mappa</a>
                   <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-firenze-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
-                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Firenze%20del%2012%20aprile" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+                <div class="event-contact">
+                  <span class="event-contact-label">📞 Informazioni e iscrizioni</span>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Firenze%20del%2012%20aprile" target="_blank" rel="noopener">💬 Stefano Balducci · 342 303 3404</a>
                 </div>
               </div>
             </article>
@@ -281,11 +362,43 @@
                     <li>Riequilibrio chakra</li>
                   </ul>
                 </details>
-                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-staff">
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Stefano Balducci</span>
+                      <span class="event-staff-role">Guarigione quantica</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg" alt="Paolo Bardi"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Paolo Bardi</span>
+                      <span class="event-staff-role">Registri Akashici</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg" alt="Miretta Frediani"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Miretta Frediani</span>
+                      <span class="event-staff-role">Pranoterapia · Reiki</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="./federica.jpg" alt="Federica Continanza"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Federica Continanza</span>
+                      <span class="event-staff-role">Danze sciamaniche</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="event-actions">
                   <a class="btn-event btn-map" href="https://maps.google.com/?q=Via+Ludovica+1658+Sesto+di+Moriano+Lucca" target="_blank" rel="noopener">📍 Mappa</a>
                   <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-lucca-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
-                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Lucca%20del%2019%20aprile" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+                <div class="event-contact">
+                  <span class="event-contact-label">📞 Informazioni e iscrizioni</span>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Lucca%20del%2019%20aprile" target="_blank" rel="noopener">💬 Stefano Balducci · 342 303 3404</a>
                 </div>
               </div>
             </article>
@@ -309,11 +422,43 @@
                     <li>Meditazioni guidate</li>
                   </ul>
                 </details>
-                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-staff">
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Stefano Balducci</span>
+                      <span class="event-staff-role">Guarigione quantica</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg" alt="Paolo Bardi"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Paolo Bardi</span>
+                      <span class="event-staff-role">Registri Akashici</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg" alt="Miretta Frediani"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Miretta Frediani</span>
+                      <span class="event-staff-role">Pranoterapia · Reiki</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="./federica.jpg" alt="Federica Continanza"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Federica Continanza</span>
+                      <span class="event-staff-role">Danze sciamaniche</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="event-actions">
                   <a class="btn-event btn-map" href="https://maps.google.com/?q=Il+Soffio+Vitale+Piacenza" target="_blank" rel="noopener">📍 Mappa</a>
                   <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-piacenza-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
-                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Piacenza%20del%2030%20maggio" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+                <div class="event-contact">
+                  <span class="event-contact-label">📞 Informazioni e iscrizioni</span>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Piacenza%20del%2030%20maggio" target="_blank" rel="noopener">💬 Stefano Balducci · 342 303 3404</a>
                 </div>
               </div>
             </article>
@@ -337,10 +482,42 @@
                     <li>Condivisione e integrazione pomeridiana</li>
                   </ul>
                 </details>
-                <p class="event-staff-note">Con Stefano Balducci e il gruppo · Contributo: €40</p>
+                <div class="event-staff">
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Stefano Balducci</span>
+                      <span class="event-staff-role">Guarigione quantica</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg" alt="Paolo Bardi"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Paolo Bardi</span>
+                      <span class="event-staff-role">Registri Akashici</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg" alt="Miretta Frediani"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Miretta Frediani</span>
+                      <span class="event-staff-role">Pranoterapia · Reiki</span>
+                    </div>
+                  </div>
+                  <div class="event-staff-member">
+                    <img class="event-staff-avatar" src="./federica.jpg" alt="Federica Continanza"/>
+                    <div class="event-staff-info">
+                      <span class="event-staff-name">Federica Continanza</span>
+                      <span class="event-staff-role">Danze sciamaniche</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="event-actions">
                   <a class="btn-event btn-map" href="https://maps.google.com/?q=Strada+di+Saviabona+328+Vicenza" target="_blank" rel="noopener">📍 Mappa</a>
-                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Vicenza%20del%2031%20maggio" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+                <div class="event-contact">
+                  <span class="event-contact-label">📞 Informazioni e iscrizioni</span>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Vicenza%20del%2031%20maggio" target="_blank" rel="noopener">💬 Stefano Balducci · 342 303 3404</a>
                 </div>
               </div>
             </article>
@@ -424,7 +601,7 @@
           <div>
             <h2 class="section-title">Contatti e iscrizioni</h2>
             <p class="section-lead">Per informazioni su eventi e percorsi, richieste personali o iscrizioni, contatta direttamente Stefano Balducci — risponde personalmente a ogni messaggio.</p>
-            <p>Email: <a href="mailto:percorsodicrescitalucca@gmail.com">percorsodicrescitalucca@gmail.com</a><br/>WhatsApp: <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">342&nbsp;303&nbsp;3404</a></p>
+            <p>Email: <a href="/cdn-cgi/l/email-protection#20504552434f52534f444943524553434954414c5543434160474d41494c0e434f4d"><span class="__cf_email__" data-cfemail="760613041519040519121f15041305151f02171a0315151736111b171f1a5815191b">[email&#160;protected]</span></a><br/>WhatsApp: <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">342&nbsp;303&nbsp;3404</a></p>
           </div>
           <div class="card">
             <h3>Scrivi un messaggio</h3>
@@ -441,7 +618,7 @@
 
     <footer>© 2026 · Guarigione Energetica · Stefano Balducci · Eventi e percorsi in Toscana, Emilia-Romagna, Veneto e in tutta Italia.</footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       (function(){
         const toggle=document.querySelector("[data-theme-toggle]");
         const root=document.documentElement;
@@ -455,9 +632,4 @@
         const header=document.getElementById("header");
         window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>24));
         const mobileBtn=document.getElementById("mobileMenuBtn");
-        mobileBtn?.addEventListener("click",()=>{const open=header.classList.toggle("open");mobileBtn.setAttribute("aria-expanded",open?"true":"false");});
-        document.querySelectorAll(".nav-panel a").forEach(a=>a.addEventListener("click",()=>header.classList.remove("open")));
-      })();
-    </script>
-  </body>
-</html>
+        mobileBtn?.addEventListener("click",()=>{const o
