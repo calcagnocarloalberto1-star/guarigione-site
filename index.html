@@ -4,1331 +4,203 @@
     <meta charset="utf-8" />
     <title>Guarigione quantica · Eventi e percorsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Font -->
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet"/>
     <style>
-      :root,
-      [data-theme="light"] {
+      :root, [data-theme="light"] {
         --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
         --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
         --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
         --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
         --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
         --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-
-        --space-1: 0.25rem;
-        --space-2: 0.5rem;
-        --space-3: 0.75rem;
-        --space-4: 1rem;
-        --space-5: 1.25rem;
-        --space-6: 1.5rem;
-        --space-8: 2rem;
-        --space-10: 2.5rem;
-        --space-12: 3rem;
-        --space-16: 4rem;
-
-        --color-bg: #f7f6f2;
-        --color-surface: #f9f8f5;
-        --color-surface-2: #fbfbf9;
-        --color-surface-offset: #f3f0ec;
-        --color-border: #d4d1ca;
-        --color-text: #28251d;
-        --color-text-muted: #7a7974;
-        --color-text-faint: #bab9b4;
-        --color-primary: #01696f;
-        --color-primary-hover: #0c4e54;
-        --color-primary-active: #0f3638;
-
-        --radius-sm: 0.375rem;
-        --radius-md: 0.5rem;
-        --radius-lg: 0.75rem;
-        --radius-xl: 1rem;
-        --radius-full: 9999px;
-
-        --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
-        --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
-        --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
-
-        --content-default: 960px;
+        --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+        --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+        --space-12:3rem;--space-16:4rem;
+        --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+        --color-surface-offset:#f3f0ec;--color-border:#d4d1ca;
+        --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+        --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-primary-active:#0f3638;
+        --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;
+        --radius-xl:1rem;--radius-full:9999px;
+        --shadow-sm:0 1px 2px oklch(0.2 0.01 80/.06);
+        --shadow-md:0 4px 12px oklch(0.2 0.01 80/.08);
+        --shadow-lg:0 12px 32px oklch(0.2 0.01 80/.12);
+        --content-default:960px;
       }
-
       [data-theme="dark"] {
-        --color-bg: #171614;
-        --color-surface: #1c1b19;
-        --color-surface-2: #201f1d;
-        --color-surface-offset: #1d1c1a;
-        --color-border: #393836;
-        --color-text: #cdccca;
-        --color-text-muted: #797876;
-        --color-text-faint: #5a5957;
-        --color-primary: #4f98a3;
-        --color-primary-hover: #227f8b;
-        --color-primary-active: #1a626b;
-        --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
-        --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
-        --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      html {
-        text-size-adjust: none;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-        scroll-behavior: smooth;
-        scroll-padding-top: var(--space-16);
-      }
-
-      body {
-        min-height: 100vh;
-        font-family: "Satoshi", system-ui, -apple-system, BlinkMacSystemFont,
-          sans-serif;
-        font-size: var(--text-base);
-        line-height: 1.6;
-        color: var(--color-text);
-        background-color: var(--color-bg);
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-        transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-          background 180ms cubic-bezier(0.16, 1, 0.3, 1),
-          border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-          box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      button {
-        font: inherit;
-        color: inherit;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-
-      :focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 3px;
-        border-radius: var(--radius-sm);
-      }
-
-      .site-shell {
-        max-width: 1200px;
-        margin-inline: auto;
-        padding-inline: var(--space-4);
-      }
-
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: auto;
-        background: var(--color-primary);
-        color: white;
-        padding: var(--space-2) var(--space-4);
-        border-radius: var(--radius-sm);
-        z-index: 1000;
-      }
-
-      .skip-link:focus-visible {
-        left: var(--space-4);
-        top: var(--space-4);
-      }
-
-      header.site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background: color-mix(
-          in oklab,
-          var(--color-bg) 88%,
-          var(--color-surface) 12%
-        );
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid
-          oklch(from var(--color-border) l c h / 0.6);
-      }
-
-      .header-inner {
-        max-width: var(--content-default);
-        margin-inline: auto;
-        padding-block: var(--space-3);
-        padding-inline: var(--space-4);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-4);
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: var(--space-3);
-      }
-
-      .brand-mark {
-        width: 32px;
-        height: 32px;
-        border-radius: var(--radius-full);
-        border: 1px solid oklch(from var(--color-primary) l c h / 0.35);
-        display: grid;
-        place-items: center;
-      }
-
-      .brand-text strong {
-        display: block;
-        font-size: var(--text-sm);
-      }
-
-      .brand-text span {
-        display: block;
-        font-size: var(--text-xs);
-        color: var(--color-text-muted);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: var(--space-4);
-        font-size: var(--text-sm);
-      }
-
-      .nav-links a {
-        padding-block: 0.1rem;
-      }
-
-      .nav-links a:hover {
-        color: var(--color-primary);
-      }
-
-      .theme-toggle {
-        width: 32px;
-        height: 32px;
-        border-radius: var(--radius-full);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.8);
-        display: grid;
-        place-items: center;
-      }
-
-      .mobile-nav-toggle,
-      .nav-panel {
-        display: none;
-      }
-
-      main {
-        max-width: var(--content-default);
-        margin-inline: auto;
-        padding-inline: var(--space-4);
-      }
-
-      section {
-        padding-block: clamp(var(--space-8), 6vw, var(--space-16));
-      }
-
-      .hero {
-        padding-top: clamp(var(--space-12), 8vw, var(--space-20));
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        gap: var(--space-8);
-        align-items: center;
-      }
-
-      .hero-card {
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-        box-shadow: var(--shadow-lg);
-      }
-
-      .hero-text {
-        text-align: center;
-      }
-
-      .eyebrow {
-        font-size: var(--text-sm);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-3);
-      }
-
-      .hero h1 {
-        font-size: var(--text-2xl);
-        line-height: 1.1;
-        margin-bottom: var(--space-4);
-      }
-
-      .hero-lead {
-        font-size: var(--text-base);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-6);
-        max-width: 44ch;
-        margin-inline: auto;
-      }
-
-      .hero-actions {
-        display: flex;
-        justify-content: center;
-        gap: var(--space-4);
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding-inline: var(--space-5);
-        padding-block: 0.7rem;
-        border-radius: var(--radius-full);
-        font-size: var(--text-sm);
-        font-weight: 500;
-        border: 1px solid transparent;
-        box-shadow: var(--shadow-sm);
-      }
-
-      .btn-primary {
-        background: var(--color-primary);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background: var(--color-primary-hover);
-      }
-
-      .btn-secondary {
-        background: var(--color-surface);
-        color: var(--color-text);
-        border-color: var(--color-border);
-      }
-
-      .btn-secondary:hover {
-        background: var(--color-surface-offset);
-      }
-
-      .section-title {
-        font-size: var(--text-xl);
-        margin-bottom: var(--space-4);
-      }
-
-      .section-lead {
-        font-size: var(--text-base);
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-6);
-        max-width: 52ch;
-      }
-
-      .two-col {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-        gap: var(--space-8);
-        align-items: flex-start;
-      }
-
-      .card {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-6);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .card h3 {
-        font-size: var(--text-lg);
-        margin-bottom: var(--space-3);
-      }
-
-      .card ul {
-        list-style: disc;
-        padding-left: 1.2rem;
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-      }
-
-      .card ul li + li {
-        margin-top: 0.3rem;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        border-radius: var(--radius-full);
-        padding-inline: var(--space-3);
-        padding-block: 0.2rem;
-        font-size: var(--text-xs);
-        background: color-mix(
-          in oklab,
-          var(--color-primary) 12%,
-          var(--color-surface-2)
-        );
-        color: var(--color-primary-active);
-        margin-bottom: var(--space-2);
-      }
-
-      /* Staff section */
-      .staff-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-6);
-        margin-top: var(--space-6);
-      }
-
-      .staff-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-6);
-        box-shadow: var(--shadow-sm);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: var(--space-3);
-      }
-
-      .staff-avatar {
-        width: 96px;
-        height: 96px;
-        border-radius: var(--radius-full);
-        object-fit: cover;
-        border: 2px solid oklch(from var(--color-primary) l c h / 0.25);
-        box-shadow: var(--shadow-md);
-      }
-
-      .staff-name {
-        font-size: var(--text-lg);
-        font-weight: 600;
-        margin: 0;
-      }
-
-      .staff-role {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--color-primary);
-        font-weight: 500;
-      }
-
-      .staff-bio {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.6;
-      }
-
-      .staff-tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--space-2);
-        margin-top: var(--space-1);
-      }
-
-      .staff-tag {
-        font-size: var(--text-xs);
-        padding: 0.15rem 0.6rem;
-        border-radius: var(--radius-full);
-        background: color-mix(in oklab, var(--color-primary) 10%, var(--color-surface-2));
-        color: var(--color-primary-active);
-      }
-
-      /* Chi sono con foto */
-      .stefano-avatar {
-        width: 110px;
-        height: 110px;
-        border-radius: var(--radius-full);
-        object-fit: cover;
-        border: 2px solid oklch(from var(--color-primary) l c h / 0.25);
-        box-shadow: var(--shadow-md);
-        float: left;
-        margin-right: var(--space-5);
-        margin-bottom: var(--space-3);
-      }
-
-
-      /* Rich Event Cards */
-      .event-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-6);
-      }
-
-      .event-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-xl);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
-        box-shadow: var(--shadow-md);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .event-cover {
-        position: relative;
-        height: 180px;
-        overflow: hidden;
-        background: var(--color-surface-offset);
-      }
-
-      .event-cover img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .event-cover .badge {
-        position: absolute;
-        top: var(--space-3);
-        left: var(--space-3);
-        margin: 0;
-        backdrop-filter: blur(6px);
-        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
-        color: white;
-      }
-
-      .event-body {
-        padding: var(--space-5);
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-3);
-        flex: 1;
-      }
-
-      .event-city {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-primary);
-        font-weight: 600;
-      }
-
-      .event-card h3 {
-        font-size: var(--text-lg);
-        line-height: 1.3;
-        margin: 0;
-      }
-
-      .event-meta {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.7;
-      }
-
-      .event-meta strong {
-        color: var(--color-text);
-      }
-
-      .event-desc {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.6;
-      }
-
-      .event-program {
-        background: var(--color-surface-offset);
-        border-radius: var(--radius-md);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
-        padding: var(--space-3) var(--space-4);
-      }
-
-      .event-program summary {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--color-text);
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-      }
-
-      .event-program summary::before {
-        content: "▸";
-        color: var(--color-primary);
-        transition: transform 200ms;
-        display: inline-block;
-      }
-
-      .event-program[open] summary::before {
-        transform: rotate(90deg);
-      }
-
-      .event-program[open] summary {
-        color: var(--color-primary);
-        margin-bottom: var(--space-3);
-      }
-
-      .event-program ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        display: flex;
-        align-items: flex-start;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li::before {
-        content: "·";
-        color: var(--color-primary);
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-
-      .event-staff-note {
-        font-size: var(--text-xs);
-        color: var(--color-text-faint);
-        font-style: italic;
-      }
-
-      .event-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2);
-        margin-top: auto;
-        padding-top: var(--space-2);
-      }
-
-      .btn-event {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.45rem 0.85rem;
-        border-radius: var(--radius-full);
-        font-size: var(--text-xs);
-        font-weight: 500;
-        border: 1px solid transparent;
-        text-decoration: none;
-        transition: background 180ms ease, border-color 180ms ease;
-      }
-
-      .btn-map {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-map:hover { background: var(--color-surface-offset); }
-
-      .btn-brochure {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-brochure:hover { background: var(--color-surface-offset); }
-
-      .btn-whatsapp {
-        background: #25d366;
-        color: white;
-        border-color: #25d366;
-        flex: 1;
-        justify-content: center;
-      }
-      .btn-whatsapp:hover { background: #1ebe5d; }
-
-      @media (max-width: 980px) {
-        .event-list { grid-template-columns: 1fr; }
-        .event-cover { height: 200px; }
-      }
-
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-4);
-      }
-
-      .gallery-grid img {
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-      }
-
-      .faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-4);
-      }
-
-      details {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-4) var(--space-5);
-        box-shadow: var(--shadow-sm);
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 600;
-        list-style: none;
-      }
-
-      details[open] summary {
-        color: var(--color-primary);
-      }
-
-      details p {
-        margin-top: var(--space-3);
-        color: var(--color-text-muted);
-        font-size: var(--text-sm);
-      }
-
-      form {
-        display: grid;
-        gap: var(--space-3);
-      }
-
-      label {
-        font-size: var(--text-sm);
-        display: grid;
-        gap: var(--space-1);
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.9rem 1rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--color-border);
-        background: var(--color-surface-2);
-        font: inherit;
-        color: inherit;
-      }
-
-      textarea {
-        min-height: 140px;
-        resize: vertical;
-      }
-
-      footer {
-        padding-block: var(--space-10) var(--space-4);
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        text-align: center;
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-card {
-          order: -1;
-        }
-
-        .nav-links {
-          display: none;
-        }
-
-        .two-col {
-          grid-template-columns: 1fr;
-        }
-
-        .staff-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-  
-      /* Rich Event Cards */
-      .event-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-6);
-      }
-
-      .event-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-xl);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
-        box-shadow: var(--shadow-md);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .event-cover {
-        position: relative;
-        height: 180px;
-        overflow: hidden;
-        background: var(--color-surface-offset);
-      }
-
-      .event-cover img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .event-cover .badge {
-        position: absolute;
-        top: var(--space-3);
-        left: var(--space-3);
-        margin: 0;
-        backdrop-filter: blur(6px);
-        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
-        color: white;
-      }
-
-      .event-body {
-        padding: var(--space-5);
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-3);
-        flex: 1;
-      }
-
-      .event-city {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-primary);
-        font-weight: 600;
-      }
-
-      .event-card h3 {
-        font-size: var(--text-lg);
-        line-height: 1.3;
-        margin: 0;
-      }
-
-      .event-meta {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.7;
-      }
-
-      .event-meta strong {
-        color: var(--color-text);
-      }
-
-      .event-desc {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.6;
-      }
-
-      .event-program {
-        background: var(--color-surface-offset);
-        border-radius: var(--radius-md);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
-        padding: var(--space-3) var(--space-4);
-      }
-
-      .event-program summary {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--color-text);
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-      }
-
-      .event-program summary::before {
-        content: "▸";
-        color: var(--color-primary);
-        transition: transform 200ms;
-        display: inline-block;
-      }
-
-      .event-program[open] summary::before {
-        transform: rotate(90deg);
-      }
-
-      .event-program[open] summary {
-        color: var(--color-primary);
-        margin-bottom: var(--space-3);
-      }
-
-      .event-program ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        display: flex;
-        align-items: flex-start;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li::before {
-        content: "·";
-        color: var(--color-primary);
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-
-      .event-staff-note {
-        font-size: var(--text-xs);
-        color: var(--color-text-faint);
-        font-style: italic;
-      }
-
-      .event-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2);
-        margin-top: auto;
-        padding-top: var(--space-2);
-      }
-
-      .btn-event {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.45rem 0.85rem;
-        border-radius: var(--radius-full);
-        font-size: var(--text-xs);
-        font-weight: 500;
-        border: 1px solid transparent;
-        text-decoration: none;
-        transition: background 180ms ease, border-color 180ms ease;
-      }
-
-      .btn-map {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-map:hover { background: var(--color-surface-offset); }
-
-      .btn-brochure {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-brochure:hover { background: var(--color-surface-offset); }
-
-      .btn-whatsapp {
-        background: #25d366;
-        color: white;
-        border-color: #25d366;
-        flex: 1;
-        justify-content: center;
-      }
-      .btn-whatsapp:hover { background: #1ebe5d; }
-
-      @media (max-width: 980px) {
-        .event-list { grid-template-columns: 1fr; }
-        .event-cover { height: 200px; }
-      }
-
-      .gallery-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .faq-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .mobile-nav-toggle {
-          display: grid;
-          width: 32px;
-          height: 32px;
-          border-radius: var(--radius-full);
-          border: 1px solid var(--color-border);
-          place-items: center;
-        }
-
-        .nav-panel {
-          position: absolute;
-          left: 1rem;
-          right: 1rem;
-          top: calc(100% + 0.5rem);
-          padding: var(--space-4);
-          background: var(--color-surface);
-          border-radius: var(--radius-lg);
-          border: 1px solid var(--color-border);
-          box-shadow: var(--shadow-lg);
-          display: none;
-        }
-
-        .site-header.open .nav-panel {
-          display: block;
-        }
-
-        .nav-panel a {
-          display: block;
-          padding-block: 0.75rem;
-          border-bottom: 1px solid
-            oklch(from var(--color-border) l c h / 0.5);
-        }
-
-        .nav-panel a:last-child {
-          border-bottom: none;
-        }
-      }
-
-      @media (max-width: 640px) {
-        main,
-        .header-inner,
-        .site-shell {
-          padding-inline: var(--space-4);
-        }
-
-        .staff-grid {
-          grid-template-columns: 1fr;
-        }
-
-  
-      /* Rich Event Cards */
-      .event-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-6);
-      }
-
-      .event-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-xl);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
-        box-shadow: var(--shadow-md);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .event-cover {
-        position: relative;
-        height: 180px;
-        overflow: hidden;
-        background: var(--color-surface-offset);
-      }
-
-      .event-cover img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .event-cover .badge {
-        position: absolute;
-        top: var(--space-3);
-        left: var(--space-3);
-        margin: 0;
-        backdrop-filter: blur(6px);
-        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
-        color: white;
-      }
-
-      .event-body {
-        padding: var(--space-5);
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-3);
-        flex: 1;
-      }
-
-      .event-city {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-primary);
-        font-weight: 600;
-      }
-
-      .event-card h3 {
-        font-size: var(--text-lg);
-        line-height: 1.3;
-        margin: 0;
-      }
-
-      .event-meta {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.7;
-      }
-
-      .event-meta strong {
-        color: var(--color-text);
-      }
-
-      .event-desc {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        line-height: 1.6;
-      }
-
-      .event-program {
-        background: var(--color-surface-offset);
-        border-radius: var(--radius-md);
-        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
-        padding: var(--space-3) var(--space-4);
-      }
-
-      .event-program summary {
-        font-size: var(--text-sm);
-        font-weight: 600;
-        color: var(--color-text);
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-      }
-
-      .event-program summary::before {
-        content: "▸";
-        color: var(--color-primary);
-        transition: transform 200ms;
-        display: inline-block;
-      }
-
-      .event-program[open] summary::before {
-        transform: rotate(90deg);
-      }
-
-      .event-program[open] summary {
-        color: var(--color-primary);
-        margin-bottom: var(--space-3);
-      }
-
-      .event-program ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        display: flex;
-        align-items: flex-start;
-        gap: var(--space-2);
-      }
-
-      .event-program ul li::before {
-        content: "·";
-        color: var(--color-primary);
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-
-      .event-staff-note {
-        font-size: var(--text-xs);
-        color: var(--color-text-faint);
-        font-style: italic;
-      }
-
-      .event-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2);
-        margin-top: auto;
-        padding-top: var(--space-2);
-      }
-
-      .btn-event {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.45rem 0.85rem;
-        border-radius: var(--radius-full);
-        font-size: var(--text-xs);
-        font-weight: 500;
-        border: 1px solid transparent;
-        text-decoration: none;
-        transition: background 180ms ease, border-color 180ms ease;
-      }
-
-      .btn-map {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-map:hover { background: var(--color-surface-offset); }
-
-      .btn-brochure {
-        background: var(--color-surface-2);
-        border-color: var(--color-border);
-        color: var(--color-text-muted);
-      }
-      .btn-brochure:hover { background: var(--color-surface-offset); }
-
-      .btn-whatsapp {
-        background: #25d366;
-        color: white;
-        border-color: #25d366;
-        flex: 1;
-        justify-content: center;
-      }
-      .btn-whatsapp:hover { background: #1ebe5d; }
-
-      @media (max-width: 980px) {
-        .event-list { grid-template-columns: 1fr; }
-        .event-cover { height: 200px; }
-      }
-
-      .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stefano-avatar {
-          float: none;
-          display: block;
-          margin-inline: auto;
-          margin-right: auto;
-          margin-bottom: var(--space-4);
-        }
-
-        .section-lead {
-          max-width: 100%;
-        }
-
-        .hero h1 {
-          font-size: clamp(1.6rem, 8vw, 2.5rem);
-        }
-
-        .staff-card {
-          padding: var(--space-4);
-        }
+        --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+        --color-surface-offset:#1d1c1a;--color-border:#393836;
+        --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#5a5957;
+        --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+        --shadow-sm:0 1px 2px oklch(0 0 0/.2);--shadow-md:0 4px 12px oklch(0 0 0/.3);
+        --shadow-lg:0 12px 32px oklch(0 0 0/.4);
+      }
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{text-size-adjust:none;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:var(--space-16)}
+      body{min-height:100vh;font-family:"Satoshi",system-ui,sans-serif;font-size:var(--text-base);line-height:1.6;color:var(--color-text);background-color:var(--color-bg)}
+      img{display:block;max-width:100%;height:auto}
+      a{color:inherit;text-decoration:none;transition:color 180ms ease,background 180ms ease}
+      button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+      :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+      .site-shell{max-width:1200px;margin-inline:auto;padding-inline:var(--space-4)}
+      .skip-link{position:absolute;left:-9999px;background:var(--color-primary);color:white;padding:var(--space-2) var(--space-4);border-radius:var(--radius-sm);z-index:1000}
+      .skip-link:focus-visible{left:var(--space-4);top:var(--space-4)}
+      header.site-header{position:sticky;top:0;z-index:20;background:color-mix(in oklab,var(--color-bg) 88%,var(--color-surface) 12%);backdrop-filter:blur(10px);border-bottom:1px solid oklch(from var(--color-border) l c h/.6)}
+      .header-inner{max-width:var(--content-default);margin-inline:auto;padding-block:var(--space-3);padding-inline:var(--space-4);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+      .brand{display:flex;align-items:center;gap:var(--space-3)}
+      .brand-mark{width:32px;height:32px;border-radius:var(--radius-full);border:1px solid oklch(from var(--color-primary) l c h/.35);display:grid;place-items:center}
+      .brand-text strong{display:block;font-size:var(--text-sm)}
+      .brand-text span{display:block;font-size:var(--text-xs);color:var(--color-text-muted)}
+      .nav-links{display:flex;gap:var(--space-4);font-size:var(--text-sm)}
+      .nav-links a:hover{color:var(--color-primary)}
+      .theme-toggle{width:32px;height:32px;border-radius:var(--radius-full);border:1px solid oklch(from var(--color-border) l c h/.8);display:grid;place-items:center}
+      .mobile-nav-toggle,.nav-panel{display:none}
+      main{max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-4)}
+      section{padding-block:clamp(var(--space-8),6vw,var(--space-16))}
+      .hero{padding-top:clamp(var(--space-12),8vw,5rem)}
+      .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--space-8);align-items:center}
+      .hero-card{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg)}
+      .hero-card img{width:100%;height:100%;object-fit:cover}
+      .hero-text{text-align:center}
+      .eyebrow{font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted);margin-bottom:var(--space-3)}
+      .hero h1{font-size:var(--text-2xl);line-height:1.1;margin-bottom:var(--space-4)}
+      .hero-lead{font-size:var(--text-base);color:var(--color-text-muted);margin-bottom:var(--space-6);max-width:44ch;margin-inline:auto}
+      .hero-actions{display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap}
+      .btn{display:inline-flex;align-items:center;justify-content:center;padding-inline:var(--space-5);padding-block:.7rem;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:500;border:1px solid transparent;box-shadow:var(--shadow-sm)}
+      .btn-primary{background:var(--color-primary);color:white}
+      .btn-primary:hover{background:var(--color-primary-hover)}
+      .btn-secondary{background:var(--color-surface);color:var(--color-text);border-color:var(--color-border)}
+      .btn-secondary:hover{background:var(--color-surface-offset)}
+      .section-title{font-size:var(--text-xl);margin-bottom:var(--space-4)}
+      .section-lead{font-size:var(--text-base);color:var(--color-text-muted);margin-bottom:var(--space-6);max-width:52ch}
+      .two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--space-8);align-items:flex-start}
+      .card{background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid oklch(from var(--color-border) l c h/.85);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+      .card h3{font-size:var(--text-lg);margin-bottom:var(--space-3)}
+      .card ul{list-style:disc;padding-left:1.2rem;font-size:var(--text-sm);color:var(--color-text-muted)}
+      .card ul li+li{margin-top:.3rem}
+      .stefano-avatar{width:110px;height:110px;border-radius:var(--radius-full);object-fit:cover;border:2px solid oklch(from var(--color-primary) l c h/.25);box-shadow:var(--shadow-md);float:left;margin-right:var(--space-5);margin-bottom:var(--space-3)}
+      .badge{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding-inline:var(--space-3);padding-block:.2rem;font-size:var(--text-xs);background:color-mix(in oklab,var(--color-primary) 12%,var(--color-surface-2));color:var(--color-primary-active)}
+      /* Events */
+      .event-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)}
+      .event-card{background:var(--color-surface);border-radius:var(--radius-xl);border:1px solid oklch(from var(--color-border) l c h/.85);box-shadow:var(--shadow-md);display:flex;flex-direction:column;overflow:hidden}
+      .event-cover{position:relative;height:180px;overflow:hidden;background:var(--color-surface-offset)}
+      .event-cover img{width:100%;height:100%;object-fit:cover;display:block}
+      .event-cover .badge{position:absolute;top:var(--space-3);left:var(--space-3);backdrop-filter:blur(6px);background:color-mix(in oklab,var(--color-primary) 80%,transparent);color:white}
+      .event-body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
+      .event-city{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);font-weight:600}
+      .event-card h3{font-size:var(--text-lg);line-height:1.3;margin:0}
+      .event-meta{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7}
+      .event-meta strong{color:var(--color-text)}
+      .event-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6}
+      .event-program{background:var(--color-surface-offset);border-radius:var(--radius-md);border:1px solid oklch(from var(--color-border) l c h/.6);padding:var(--space-3) var(--space-4)}
+      .event-program summary{font-size:var(--text-sm);font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;gap:var(--space-2)}
+      .event-program summary::before{content:"▸";color:var(--color-primary);transition:transform 200ms;display:inline-block}
+      .event-program[open] summary::before{transform:rotate(90deg)}
+      .event-program[open] summary{color:var(--color-primary);margin-bottom:var(--space-3)}
+      .event-program ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--space-2)}
+      .event-program ul li{font-size:var(--text-sm);color:var(--color-text-muted);display:flex;align-items:flex-start;gap:var(--space-2)}
+      .event-program ul li::before{content:"·";color:var(--color-primary);font-weight:700;flex-shrink:0}
+      .event-staff-note{font-size:var(--text-xs);color:var(--color-text-faint);font-style:italic}
+      .event-actions{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:auto;padding-top:var(--space-2)}
+      .btn-event{display:inline-flex;align-items:center;gap:.35rem;padding:.45rem .85rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:500;border:1px solid transparent;text-decoration:none;transition:background 180ms ease}
+      .btn-map,.btn-brochure{background:var(--color-surface-2);border-color:var(--color-border);color:var(--color-text-muted)}
+      .btn-map:hover,.btn-brochure:hover{background:var(--color-surface-offset)}
+      .btn-whatsapp{background:#25d366;color:white;border-color:#25d366;flex:1;justify-content:center}
+      .btn-whatsapp:hover{background:#1ebe5d}
+      /* Staff */
+      .staff-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-5);margin-top:var(--space-6)}
+      .staff-card{background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid oklch(from var(--color-border) l c h/.85);padding:var(--space-5);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3)}
+      .staff-avatar{width:96px;height:96px;border-radius:var(--radius-full);object-fit:cover;border:2px solid oklch(from var(--color-primary) l c h/.25);box-shadow:var(--shadow-md)}
+      .staff-name{font-size:var(--text-base);font-weight:600;margin:0}
+      .staff-role{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-primary);font-weight:500}
+      .staff-bio{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6}
+      .staff-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2);margin-top:var(--space-1)}
+      .staff-tag{font-size:var(--text-xs);padding:.15rem .6rem;border-radius:var(--radius-full);background:color-mix(in oklab,var(--color-primary) 10%,var(--color-surface-2));color:var(--color-primary-active)}
+      /* Gallery */
+      .gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
+      .gallery-grid img{border-radius:var(--radius-lg);box-shadow:var(--shadow-md);width:100%;height:240px;object-fit:cover}
+      /* FAQ */
+      .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+      details{background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid oklch(from var(--color-border) l c h/.85);padding:var(--space-4) var(--space-5);box-shadow:var(--shadow-sm)}
+      summary{cursor:pointer;font-weight:600;list-style:none}
+      details[open] summary{color:var(--color-primary)}
+      details p{margin-top:var(--space-3);color:var(--color-text-muted);font-size:var(--text-sm)}
+      form{display:grid;gap:var(--space-3)}
+      label{font-size:var(--text-sm);display:grid;gap:var(--space-1)}
+      input,textarea{width:100%;padding:.9rem 1rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface-2);font:inherit;color:inherit}
+      textarea{min-height:140px;resize:vertical}
+      footer{padding-block:var(--space-10) var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);text-align:center}
+      /* Responsive */
+      @media(max-width:980px){
+        .hero-grid{grid-template-columns:1fr}.hero-card{order:-1}
+        .nav-links{display:none}.two-col{grid-template-columns:1fr}
+        .event-list{grid-template-columns:1fr}.event-cover{height:200px}
+        .staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.faq-grid{grid-template-columns:1fr}
+        .mobile-nav-toggle{display:grid;width:32px;height:32px;border-radius:var(--radius-full);border:1px solid var(--color-border);place-items:center}
+        .nav-panel{position:absolute;left:1rem;right:1rem;top:calc(100% + .5rem);padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-lg);display:none}
+        .site-header.open .nav-panel{display:block}
+        .nav-panel a{display:block;padding-block:.75rem;border-bottom:1px solid oklch(from var(--color-border) l c h/.5)}
+        .nav-panel a:last-child{border-bottom:none}
+      }
+      @media(max-width:640px){
+        main,.header-inner,.site-shell{padding-inline:var(--space-4)}
+        .event-list,.gallery-grid{grid-template-columns:1fr}
+        .staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .stefano-avatar{float:none;display:block;margin-inline:auto;margin-right:auto;margin-bottom:var(--space-4)}
+        .section-lead{max-width:100%}
+        .hero h1{font-size:clamp(1.6rem,8vw,2.5rem)}
       }
     </style>
   </head>
-
   <body>
     <a href="#contenuto" class="skip-link">Salta al contenuto</a>
-
     <header class="site-header" id="header">
       <div class="header-inner site-shell">
         <a class="brand" href="#top" aria-label="Torna all'inizio">
           <div class="brand-mark" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M12 2v20" />
-              <path d="M4 12h16" />
-              <path d="M6.5 6.5c3.5 3.5 7.5 7.5 11 11" />
-              <path d="M17.5 6.5c-3.5 3.5-7.5 7.5-11 11" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20"/><path d="M4 12h16"/>
+              <path d="M6.5 6.5c3.5 3.5 7.5 7.5 11 11"/>
+              <path d="M17.5 6.5c-3.5 3.5-7.5 7.5-11 11"/>
             </svg>
           </div>
-          <div class="brand-text">
-            <strong>Guarigione Energetica</strong>
-            <span>Gruppi reali · presenza · ascolto</span>
-          </div>
+          <div class="brand-text"><strong>Guarigione Energetica</strong><span>Gruppi reali · presenza · ascolto</span></div>
         </a>
-
         <nav class="nav-links" aria-label="Navigazione principale">
-          <a href="#chi-sono">Chi sono</a>
-          <a href="#eventi">Eventi</a>
-          <a href="#staff">Staff</a>
-          <a href="#galleria">Galleria</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contatti">Contatti</a>
+          <a href="#chi-sono">Chi sono</a><a href="#eventi">Eventi</a>
+          <a href="#staff">Staff</a><a href="#galleria">Galleria</a>
+          <a href="#faq">FAQ</a><a href="#contatti">Contatti</a>
         </nav>
-
-        <div style="display: flex; gap: 0.5rem; align-items: center">
-          <button
-            class="theme-toggle"
-            type="button"
-            data-theme-toggle
-            aria-label="Attiva tema scuro"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-              />
-            </svg>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Attiva tema scuro">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
-
-          <button
-            class="mobile-nav-toggle"
-            type="button"
-            id="mobileMenuBtn"
-            aria-expanded="false"
-            aria-controls="navPanel"
-          >
-            ☰
-          </button>
+          <button class="mobile-nav-toggle" type="button" id="mobileMenuBtn" aria-expanded="false" aria-controls="navPanel">☰</button>
         </div>
-
         <div class="nav-panel" id="navPanel" aria-label="Menu mobile">
-          <a href="#chi-sono">Chi sono</a>
-          <a href="#eventi">Eventi</a>
-          <a href="#staff">Staff</a>
-          <a href="#galleria">Galleria</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contatti">Contatti</a>
+          <a href="#chi-sono">Chi sono</a><a href="#eventi">Eventi</a>
+          <a href="#staff">Staff</a><a href="#galleria">Galleria</a>
+          <a href="#faq">FAQ</a><a href="#contatti">Contatti</a>
         </div>
       </div>
     </header>
 
     <main id="contenuto">
+
       <!-- HERO -->
       <section class="hero" id="top">
         <div class="site-shell hero-grid">
           <div class="hero-card">
-            <img
-              src="./Scala.jpg"
-              alt="Scala luminosa tra le nuvole con persone che salgono"
-              width="1429"
-              height="803"
-              fetchpriority="high"
-            />
+            <img src="./Scala.jpg" alt="Scala luminosa tra le nuvole con persone che salgono" width="1429" height="803" fetchpriority="high"/>
           </div>
-
           <div class="hero-text">
-            <div class="eyebrow">
-              Eventi dal vivo · Guarigione quantica di gruppo
-            </div>
+            <div class="eyebrow">Eventi dal vivo · Guarigione quantica di gruppo</div>
             <h1>Guarisci insieme.<br>Trasforma la tua energia.</h1>
-            <p class="hero-lead">
-              Giornate di presenza, pratiche energetiche e guarigione quantica
-              di gruppo — per chi sente il richiamo di un cambiamento reale.
-            </p>
+            <p class="hero-lead">Giornate di presenza, pratiche energetiche e guarigione quantica di gruppo — per chi sente il richiamo di un cambiamento reale.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#eventi">Vedi gli eventi</a>
-              <a class="btn btn-secondary" href="#contatti">
-                Iscriviti o chiedi informazioni
-              </a>
+              <a class="btn btn-secondary" href="#contatti">Iscriviti o chiedi informazioni</a>
             </div>
           </div>
         </div>
@@ -1339,42 +211,16 @@
         <div class="site-shell two-col">
           <div>
             <h2 class="section-title">Chi sono</h2>
-            <img
-              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg"
-              alt="Stefano Balducci"
-              class="stefano-avatar"
-              width="110"
-              height="110"
-            />
-            <p class="section-lead">
-              Stefano Balducci è un operatore olistico con anni di esperienza
-              in tecniche energetiche e guarigione spirituale. Il suo lavoro è
-              centrato sulla persona: sulla presenza, sull'ascolto del corpo e
-              sull'accompagnamento interiore.
-            </p>
-            <p>
-              Specializzato in pranoterapia, guarigione quantica e Metodo
-              Ankalà, Stefano integra lavoro energetico, consapevolezza
-              profonda e pratiche di gruppo in un percorso che rispetta il
-              ritmo di ciascuno.
-            </p>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci" class="stefano-avatar" width="110" height="110"/>
+            <p class="section-lead">Stefano Balducci è un operatore olistico con anni di esperienza in tecniche energetiche e guarigione spirituale. Il suo lavoro è centrato sulla persona: sulla presenza, sull'ascolto del corpo e sull'accompagnamento interiore.</p>
+            <p>Specializzato in pranoterapia, guarigione quantica e Metodo Ankalà, Stefano integra lavoro energetico, consapevolezza profonda e pratiche di gruppo in un percorso che rispetta il ritmo di ciascuno.</p>
           </div>
-
           <div class="card">
             <h3>Come lavora</h3>
             <ul>
-              <li>
-                Approccio fondato su ascolto, umiltà e puro intento, con
-                attenzione al percorso interiore di ogni partecipante.
-              </li>
-              <li>
-                Incontri individuali e di gruppo, in collaborazione con altri
-                operatori quando il lavoro lo richiede.
-              </li>
-              <li>
-                Focus su energia, corpi sottili, memoria cellulare e
-                integrazione delle esperienze vissute.
-              </li>
+              <li>Approccio fondato su ascolto, umiltà e puro intento, con attenzione al percorso interiore di ogni partecipante.</li>
+              <li>Incontri individuali e di gruppo, in collaborazione con altri operatori quando il lavoro lo richiede.</li>
+              <li>Focus su energia, corpi sottili, memoria cellulare e integrazione delle esperienze vissute.</li>
             </ul>
           </div>
         </div>
@@ -1384,36 +230,19 @@
       <section id="eventi">
         <div class="site-shell">
           <h2 class="section-title">Eventi</h2>
-          <p class="section-lead">
-            Giornate in presenza dedicate alla guarigione quantica di gruppo —
-            un lavoro energetico collettivo per trasmutare le emozioni,
-            riequilibrare i chakra e riconnetterti con la tua essenza.
-          </p>
-
+          <p class="section-lead">Giornate in presenza dedicate alla guarigione quantica di gruppo — un lavoro energetico collettivo per trasmutare le emozioni, riequilibrare i chakra e riconnetterti con la tua essenza.</p>
           <div class="event-list">
 
-            <!-- Firenze Quantica -->
             <article class="event-card">
               <div class="event-cover">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg"
-                  alt="Firenze"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg" alt="Firenze" loading="lazy"/>
                 <span class="badge">Evento in evidenza</span>
               </div>
               <div class="event-body">
                 <span class="event-city">Firenze Quantica</span>
                 <h3>Guarigione quantica di gruppo</h3>
-                <p class="event-meta">
-                  <strong>📅 Domenica 12 aprile 2026 · 10:00–18:00</strong><br />
-                  📍 Circolo La Loggetta · Via Aretina 301 · Firenze (FI)
-                </p>
-                <p class="event-desc">
-                  Una giornata di pratiche energetiche, connessione al sé superiore
-                  e meditazioni guidate per trasmutare le emozioni negative in positive.
-                </p>
+                <p class="event-meta"><strong>📅 Domenica 12 aprile 2026 · 10:00–18:00</strong><br>📍 Circolo La Loggetta · Via Aretina 301 · Firenze (FI)</p>
+                <p class="event-desc">Una giornata di pratiche energetiche, connessione al sé superiore e meditazioni guidate per trasmutare le emozioni negative in positive.</p>
                 <details class="event-program">
                   <summary>Programma della giornata</summary>
                   <ul>
@@ -1433,28 +262,15 @@
               </div>
             </article>
 
-            <!-- Lucca Quantica -->
             <article class="event-card">
               <div class="event-cover">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg"
-                  alt="Lucca"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg" alt="Lucca" loading="lazy"/>
               </div>
               <div class="event-body">
                 <span class="event-city">Lucca Quantica</span>
                 <h3>Danza dei 7 Veli – Il Risveglio dell'Essenza</h3>
-                <p class="event-meta">
-                  <strong>📅 Domenica 19 aprile 2026 · 10:00–18:00</strong><br />
-                  📍 Via Ludovica 1658 · Sesto di Moriano · Lucca (LU)
-                </p>
-                <p class="event-desc">
-                  Un percorso simbolico attraverso i 7 veli che separano l'essere umano
-                  dalla propria essenza più autentica. Danza, guarigione quantica e pratiche
-                  energetiche per riconnettersi in profondità.
-                </p>
+                <p class="event-meta"><strong>📅 Domenica 19 aprile 2026 · 10:00–18:00</strong><br>📍 Via Ludovica 1658 · Sesto di Moriano · Lucca (LU)</p>
+                <p class="event-desc">Un percorso simbolico attraverso i 7 veli che separano l'essere umano dalla propria essenza più autentica. Danza, guarigione quantica e pratiche energetiche.</p>
                 <details class="event-program">
                   <summary>Programma della giornata</summary>
                   <ul>
@@ -1474,28 +290,15 @@
               </div>
             </article>
 
-            <!-- Piacenza Quantica -->
             <article class="event-card">
               <div class="event-cover">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg"
-                  alt="Piacenza - Piazza Cavalli"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg" alt="Piacenza - Piazza Cavalli" loading="lazy"/>
               </div>
               <div class="event-body">
                 <span class="event-city">Piacenza Quantica</span>
                 <h3>Guarigione quantica di gruppo</h3>
-                <p class="event-meta">
-                  <strong>📅 Sabato 30 maggio 2026 · 10:00–18:00</strong><br />
-                  📍 Il Soffio Vitale · Piacenza (PC)
-                </p>
-                <p class="event-desc">
-                  Una giornata di crescita e consapevolezza: guarigione quantica di gruppo,
-                  trasmutazione emozionale e meditazioni guidate per ritrovare equilibrio
-                  e chiarezza interiore.
-                </p>
+                <p class="event-meta"><strong>📅 Sabato 30 maggio 2026 · 10:00–18:00</strong><br>📍 Il Soffio Vitale · Piacenza (PC)</p>
+                <p class="event-desc">Una giornata di crescita e consapevolezza: guarigione quantica di gruppo, trasmutazione emozionale e meditazioni guidate per ritrovare equilibrio interiore.</p>
                 <details class="event-program">
                   <summary>Programma della giornata</summary>
                   <ul>
@@ -1515,28 +318,15 @@
               </div>
             </article>
 
-            <!-- Vicenza -->
             <article class="event-card">
               <div class="event-cover">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg"
-                  alt="Vicenza"
-                  loading="lazy"
-                  onerror="this.style.display='none'"
-                />
+                <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg" alt="Vicenza" loading="lazy"/>
               </div>
               <div class="event-body">
                 <span class="event-city">Vicenza</span>
                 <h3>Guarigione quantica di gruppo</h3>
-                <p class="event-meta">
-                  <strong>📅 Domenica 31 maggio 2026 · 10:00–18:00</strong><br />
-                  📍 Strada di Saviabona 328 · Vicenza (VI)
-                </p>
-                <p class="event-desc">
-                  Una giornata di pratiche energetiche e guarigione quantica di gruppo.
-                  Il pranzo è in condivisione: ognuno porta qualcosa da gustare insieme.
-                  Contributo spese: €40.
-                </p>
+                <p class="event-meta"><strong>📅 Domenica 31 maggio 2026 · 10:00–18:00</strong><br>📍 Strada di Saviabona 328 · Vicenza (VI)</p>
+                <p class="event-desc">Una giornata di pratiche energetiche e guarigione quantica di gruppo. Il pranzo è in condivisione: ognuno porta qualcosa da gustare insieme.</p>
                 <details class="event-program">
                   <summary>Programma della giornata</summary>
                   <ul>
@@ -1558,114 +348,40 @@
           </div>
         </div>
       </section>
+
+      <!-- STAFF -->
       <section id="staff">
         <div class="site-shell">
           <h2 class="section-title">Gli operatori</h2>
-          <p class="section-lead">
-            Il gruppo che porta avanti gli eventi e i percorsi, ciascuno con
-            la propria specializzazione e il proprio percorso di vita.
-          </p>
-
+          <p class="section-lead">Il gruppo che porta avanti gli eventi e i percorsi, ciascuno con la propria specializzazione e il proprio percorso di vita.</p>
           <div class="staff-grid">
-            <!-- Stefano -->
             <div class="staff-card">
-              <img
-                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg"
-                alt="Stefano Balducci"
-                class="staff-avatar"
-                width="96"
-                height="96"
-                loading="lazy"
-              />
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/IGIxErTLntRsDXru.jpeg" alt="Stefano Balducci" class="staff-avatar" width="96" height="96" loading="lazy"/>
               <p class="staff-name">Stefano Balducci</p>
               <p class="staff-role">Operatore olistico · Guarigione energetica</p>
-              <p class="staff-bio">
-                Operatore olistico specializzato in tecniche energetiche e
-                guarigione spirituale. Accompagna le persone in percorsi di
-                trasformazione interiore attraverso pratiche di riequilibrio
-                energetico e connessione con le dimensioni sottili.
-              </p>
-              <div class="staff-tags">
-                <span class="staff-tag">Pranoterapia</span>
-                <span class="staff-tag">Quantica di gruppo</span>
-                <span class="staff-tag">Metodo Ankalà</span>
-              </div>
+              <p class="staff-bio">Operatore olistico specializzato in tecniche energetiche e guarigione spirituale. Accompagna le persone in percorsi di trasformazione interiore attraverso pratiche di riequilibrio energetico.</p>
+              <div class="staff-tags"><span class="staff-tag">Pranoterapia</span><span class="staff-tag">Quantica di gruppo</span><span class="staff-tag">Metodo Ankalà</span></div>
             </div>
-
-            <!-- Paolo -->
             <div class="staff-card">
-              <img
-                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg"
-                alt="Paolo Bardi"
-                class="staff-avatar"
-                width="96"
-                height="96"
-                loading="lazy"
-              />
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/WLrEFZfmGncoYZzr.jpeg" alt="Paolo Bardi" class="staff-avatar" width="96" height="96" loading="lazy"/>
               <p class="staff-name">Paolo Bardi</p>
               <p class="staff-role">Lettore Registri Akashici · Pranoterapeuta</p>
-              <p class="staff-bio">
-                Pratica meditazione attiva da oltre 40 anni e ha sperimentato
-                su di sé molte delle terapie olistiche. Pranoterapeuta
-                evolutivo e lettore dei Registri Akashici, con particolare
-                attenzione al cammino evolutivo dell'anima.
-              </p>
-              <div class="staff-tags">
-                <span class="staff-tag">Registri Akashici</span>
-                <span class="staff-tag">Pranoterapia</span>
-                <span class="staff-tag">Danzaterapia dei chakra</span>
-              </div>
+              <p class="staff-bio">Pratica meditazione attiva da oltre 40 anni. Pranoterapeuta evolutivo e lettore dei Registri Akashici, con particolare attenzione al cammino evolutivo dell'anima.</p>
+              <div class="staff-tags"><span class="staff-tag">Registri Akashici</span><span class="staff-tag">Pranoterapia</span><span class="staff-tag">Danzaterapia chakra</span></div>
             </div>
-
-            <!-- Miretta -->
             <div class="staff-card">
-              <img
-                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg"
-                alt="Miretta Frediani"
-                class="staff-avatar"
-                width="96"
-                height="96"
-                loading="lazy"
-              />
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663319415429/zKVEkBDPGHkktEvd.jpeg" alt="Miretta Frediani" class="staff-avatar" width="96" height="96" loading="lazy"/>
               <p class="staff-name">Miretta Frediani</p>
               <p class="staff-role">Operatrice olistica</p>
-              <p class="staff-bio">
-                Lavora con diverse discipline olistiche: Reiki, Pranoterapia,
-                meditazione e Theta Healing. Il suo intento è far comprendere
-                che ci si può autoguarire quando si prende in mano la
-                responsabilità della propria vita.
-              </p>
-              <div class="staff-tags">
-                <span class="staff-tag">Pranoterapia</span>
-                <span class="staff-tag">Theta Healing</span>
-                <span class="staff-tag">Reiki</span>
-                <span class="staff-tag">Registri Akashici</span>
-              </div>
+              <p class="staff-bio">Lavora con Reiki, Pranoterapia, meditazione e Theta Healing. Il suo intento è far comprendere che ci si può autoguarire prendendo in mano la responsabilità della propria vita.</p>
+              <div class="staff-tags"><span class="staff-tag">Pranoterapia</span><span class="staff-tag">Theta Healing</span><span class="staff-tag">Reiki</span></div>
             </div>
-
-            <!-- Federica -->
             <div class="staff-card">
-              <img
-                src="./federica.jpg"
-                alt="Federica Continanza"
-                class="staff-avatar"
-                width="96"
-                height="96"
-                loading="lazy"
-              />
+              <img src="./federica.jpg" alt="Federica Continanza" class="staff-avatar" width="96" height="96" loading="lazy"/>
               <p class="staff-name">Federica Continanza</p>
               <p class="staff-role">Chef · Danze sciamaniche</p>
-              <p class="staff-bio">
-                Appassionata di cucina e chef di talento, Federica porta nel
-                gruppo la sua energia creativa e il profondo amore per la
-                danza, in particolare le danze sciamaniche propiziatorie come
-                strumento di connessione con il sé e con il mondo invisibile.
-              </p>
-              <div class="staff-tags">
-                <span class="staff-tag">Cucina creativa</span>
-                <span class="staff-tag">Danze sciamaniche</span>
-                <span class="staff-tag">Pratiche propiziatorie</span>
-              </div>
+              <p class="staff-bio">Appassionata di cucina e chef di talento, porta nel gruppo energia creativa e il profondo amore per le danze sciamaniche propiziatorie come strumento di connessione.</p>
+              <div class="staff-tags"><span class="staff-tag">Cucina creativa</span><span class="staff-tag">Danze sciamaniche</span><span class="staff-tag">Pratiche propiziatorie</span></div>
             </div>
           </div>
         </div>
@@ -1675,37 +391,13 @@
       <section id="galleria">
         <div class="site-shell">
           <h2 class="section-title">Galleria</h2>
-          <p class="section-lead">
-            Momenti reali dai nostri eventi: il gruppo, le pratiche, le sessioni
-            e l'energia che si crea quando ci si ritrova insieme.
-          </p>
-
+          <p class="section-lead">Momenti reali dai nostri eventi: il gruppo, le pratiche, le sessioni e l'energia che si crea quando ci si ritrova insieme.</p>
           <div class="gallery-grid">
-            <img
-              src="./foto-1.jpg"
-              alt="Foto di gruppo durante un evento"
-              loading="lazy"
-            />
-            <img
-              src="./foto-2.jpg"
-              alt="Gruppo riunito in sala durante la sessione"
-              loading="lazy"
-            />
-            <img
-              src="./foto-3.jpg"
-              alt="Pratica energetica durante la guarigione quantica"
-              loading="lazy"
-            />
-            <img
-              src="./foto-4.jpg"
-              alt="Sessione di meditazione e guarigione di gruppo"
-              loading="lazy"
-            />
-            <img
-              src="./foto-5.jpg"
-              alt="Stefano Balducci durante una spiegazione al gruppo"
-              loading="lazy"
-            />
+            <img src="./foto-1.jpg" alt="Foto di gruppo durante un evento" loading="lazy"/>
+            <img src="./foto-2.jpg" alt="Gruppo riunito in sala durante la sessione" loading="lazy"/>
+            <img src="./foto-3.jpg" alt="Pratica energetica durante la guarigione quantica" loading="lazy"/>
+            <img src="./foto-4.jpg" alt="Sessione di meditazione e guarigione di gruppo" loading="lazy"/>
+            <img src="./foto-5.jpg" alt="Stefano Balducci durante una spiegazione al gruppo" loading="lazy"/>
           </div>
         </div>
       </section>
@@ -1714,76 +406,14 @@
       <section id="faq">
         <div class="site-shell">
           <h2 class="section-title">Domande frequenti</h2>
-          <p class="section-lead">
-            Alcune risposte pratiche su come partecipare, cosa aspettarsi e
-            come prepararsi agli incontri.
-          </p>
-
+          <p class="section-lead">Alcune risposte pratiche su come partecipare, cosa aspettarsi e come prepararsi agli incontri.</p>
           <div class="faq-grid">
-            <details>
-              <summary>Serve esperienza per partecipare?</summary>
-              <p>
-                No. Gli eventi sono aperti anche a chi si avvicina per la
-                prima volta al lavoro energetico. L'unica cosa che serve è il
-                desiderio sincero di lavorare su di sé.
-              </p>
-            </details>
-
-            <details>
-              <summary>Cosa devo portare agli incontri?</summary>
-              <p>
-                Abbigliamento comodo, un quaderno per annotare ciò che emerge,
-                una borraccia d'acqua e, se possibile, un plaid o telo per i
-                momenti di rilassamento.
-              </p>
-            </details>
-
-            <details>
-              <summary>Gli incontri sono adatti anche agli scettici?</summary>
-              <p>
-                Assolutamente sì. Non chiediamo di credere a nulla in anticipo,
-                ma solo di essere aperti all'esperienza. Il percorso è basato
-                sulla pratica diretta, non sulla teoria.
-              </p>
-            </details>
-
-            <details>
-              <summary>Come avviene l'iscrizione?</summary>
-              <p>
-                Scrivi una email o un messaggio WhatsApp a Stefano Balducci.
-                Riceverai conferma, tutti i dettagli logistici e le modalità
-                di contributo.
-              </p>
-            </details>
-
-            <details>
-              <summary>Cos'è la guarigione energetica?</summary>
-              <p>
-                La guarigione energetica è un insieme di pratiche che cercano
-                di riequilibrare il campo energetico di una persona per
-                favorire benessere fisico, emotivo e spirituale. L'operatore
-                — tramite le mani o a distanza — individua blocchi o
-                squilibri e li armonizza, con l'intento di sostenere
-                l'autoguarigione. Rientrano in questo ambito il Reiki, la
-                pranoterapia, la cristalloterapia e il bilanciamento dei
-                chakra.
-              </p>
-            </details>
-
-            <details>
-              <summary>Cos'è la guarigione quantica e in cosa differisce?</summary>
-              <p>
-                La guarigione quantica è un approccio olistico che lavora sui
-                quattro livelli dell'essere — fisico, mentale, emozionale e
-                spirituale — usando meditazione, intenzione, visualizzazioni
-                e pratiche energetiche collettive per trasmutare le emozioni
-                e attivare l'autoguarigione. A differenza della guarigione
-                energetica tradizionale, che lavora principalmente sul campo
-                bioenergetico individuale, la guarigione quantica enfatizza
-                il potere della coscienza collettiva e dell'intenzione
-                condivisa nel gruppo, amplificando l'effetto trasformativo.
-              </p>
-            </details>
+            <details><summary>Serve esperienza per partecipare?</summary><p>No. Gli eventi sono aperti anche a chi si avvicina per la prima volta al lavoro energetico. L'unica cosa che serve è il desiderio sincero di lavorare su di sé.</p></details>
+            <details><summary>Cosa devo portare agli incontri?</summary><p>Abbigliamento comodo, un quaderno per annotare ciò che emerge, una borraccia d'acqua e, se possibile, un plaid o telo per i momenti di rilassamento.</p></details>
+            <details><summary>Gli incontri sono adatti anche agli scettici?</summary><p>Assolutamente sì. Non chiediamo di credere a nulla in anticipo, ma solo di essere aperti all'esperienza. Il percorso è basato sulla pratica diretta, non sulla teoria.</p></details>
+            <details><summary>Come avviene l'iscrizione?</summary><p>Scrivi una email o un messaggio WhatsApp a Stefano Balducci. Riceverai conferma, tutti i dettagli logistici e le modalità di contributo.</p></details>
+            <details><summary>Cos'è la guarigione energetica?</summary><p>La guarigione energetica è un insieme di pratiche che cercano di riequilibrare il campo energetico di una persona per favorire benessere fisico, emotivo e spirituale. L'operatore individua blocchi o squilibri e li armonizza per sostenere l'autoguarigione. Rientrano in questo ambito il Reiki, la pranoterapia, la cristalloterapia e il bilanciamento dei chakra.</p></details>
+            <details><summary>Cos'è la guarigione quantica e in cosa differisce?</summary><p>La guarigione quantica lavora sui quattro livelli dell'essere — fisico, mentale, emozionale e spirituale — usando meditazione, intenzione, visualizzazioni e pratiche collettive. A differenza della guarigione energetica tradizionale, enfatizza il potere della coscienza collettiva e dell'intenzione condivisa nel gruppo, amplificando l'effetto trasformativo.</p></details>
           </div>
         </div>
       </section>
@@ -1793,83 +423,41 @@
         <div class="site-shell two-col">
           <div>
             <h2 class="section-title">Contatti e iscrizioni</h2>
-            <p class="section-lead">
-              Per informazioni su eventi e percorsi, richieste personali o
-              iscrizioni, contatta direttamente Stefano Balducci — risponde
-              personalmente a ogni messaggio.
-            </p>
-            <p>
-              Email:
-              <a href="/cdn-cgi/l/email-protection#a2d2c7d0c1cdd0d1cdc6cbc1d0c7d1c1cbd6c3ced7c1c1c3e2c5cfc3cbce8cc1cdcf">
-                <span class="__cf_email__" data-cfemail="0e7e6b7c6d617c7d616a676d7c6b7d6d677a6f627b6d6d6f4e69636f6762206d6163">[email&#160;protected]</span>
-              </a>
-              <br />
-              WhatsApp:
-              <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">
-                342&nbsp;303&nbsp;3404
-              </a>
-            </p>
+            <p class="section-lead">Per informazioni su eventi e percorsi, richieste personali o iscrizioni, contatta direttamente Stefano Balducci — risponde personalmente a ogni messaggio.</p>
+            <p>Email: <a href="mailto:percorsodicrescitalucca@gmail.com">percorsodicrescitalucca@gmail.com</a><br/>WhatsApp: <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">342&nbsp;303&nbsp;3404</a></p>
           </div>
-
           <div class="card">
             <h3>Scrivi un messaggio</h3>
             <form>
-              <label>
-                Nome e cognome
-                <input type="text" name="nome" autocomplete="name" />
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" autocomplete="email" />
-              </label>
-              <label>
-                Messaggio
-                <textarea name="messaggio"></textarea>
-              </label>
-              <button type="submit" class="btn btn-primary">
-                Invia richiesta
-              </button>
+              <label>Nome e cognome<input type="text" name="nome" autocomplete="name"/></label>
+              <label>Email<input type="email" name="email" autocomplete="email"/></label>
+              <label>Messaggio<textarea name="messaggio"></textarea></label>
+              <button type="submit" class="btn btn-primary">Invia richiesta</button>
             </form>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      © 2026 · Guarigione Energetica · Stefano Balducci · Eventi e percorsi
-      in Toscana, Emilia-Romagna e in tutta Italia.
-    </footer>
+    <footer>© 2026 · Guarigione Energetica · Stefano Balducci · Eventi e percorsi in Toscana, Emilia-Romagna, Veneto e in tutta Italia.</footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-      (function () {
-        const toggle = document.querySelector("[data-theme-toggle]");
-        const root = document.documentElement;
-        let mode = window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-        root.setAttribute("data-theme", mode);
-
-        if (toggle) {
-          const setLabel = () => {
-            toggle.setAttribute(
-              "aria-label",
-              "Passa al tema " + (mode === "dark" ? "chiaro" : "scuro")
-            );
-          };
+    <script>
+      (function(){
+        const toggle=document.querySelector("[data-theme-toggle]");
+        const root=document.documentElement;
+        let mode=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+        root.setAttribute("data-theme",mode);
+        if(toggle){
+          const setLabel=()=>toggle.setAttribute("aria-label","Passa al tema "+(mode==="dark"?"chiaro":"scuro"));
           setLabel();
-          toggle.addEventListener("click", () => {
-            mode = mode === "dark" ? "light" : "dark";
-            root.setAttribute("data-theme", mode);
-            setLabel();
-          });
+          toggle.addEventListener("click",()=>{mode=mode==="dark"?"light":"dark";root.setAttribute("data-theme",mode);setLabel();});
         }
-
-        const header = document.getElementById("header");
-        window.addEventListener("scroll", () => {
-          header.classList.toggle("scrolled", window.scrollY > 24);
-        });
-
-        const mobileBtn = document.getElementById("mobileMenuBtn");
-        mobileBtn?.addEventListener("click", () => {
-          const open = header.classList.toggle("open");
-          mobileBtn.setAttribute("aria-expanded", open ? "true" : "f
+        const header=document.getElementById("header");
+        window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>24));
+        const mobileBtn=document.getElementById("mobileMenuBtn");
+        mobileBtn?.addEventListener("click",()=>{const open=header.classList.toggle("open");mobileBtn.setAttribute("aria-expanded",open?"true":"false");});
+        document.querySelectorAll(".nav-panel a").forEach(a=>a.addEventListener("click",()=>header.classList.remove("open")));
+      })();
+    </script>
+  </body>
+</html>
