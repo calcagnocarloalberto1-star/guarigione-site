@@ -367,59 +367,6 @@
         margin-top: 0.3rem;
       }
 
-      .event-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-4);
-      }
-
-      .event-card {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-5);
-        box-shadow: var(--shadow-sm);
-        display: grid;
-        gap: var(--space-3);
-      }
-
-      .event-city {
-        font-size: var(--text-sm);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-text-muted);
-      }
-
-      .event-card h3 {
-        font-size: var(--text-lg);
-      }
-
-      .event-meta {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-      }
-
-      .event-card p {
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-      }
-
-      .event-card ul {
-        list-style: none;
-        padding: 0;
-        font-size: var(--text-sm);
-        color: var(--color-text-muted);
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-
-      .event-card ul li::before {
-        content: "· ";
-        color: var(--color-primary);
-      }
-
       .badge {
         display: inline-flex;
         align-items: center;
@@ -434,17 +381,6 @@
         );
         color: var(--color-primary-active);
         margin-bottom: var(--space-2);
-      }
-
-      .cta-link {
-        font-size: var(--text-sm);
-        font-weight: 500;
-        color: var(--color-primary);
-      }
-
-      .cta-link:hover {
-        color: var(--color-primary-hover);
-        text-decoration: underline;
       }
 
       /* Staff section */
@@ -524,6 +460,198 @@
         float: left;
         margin-right: var(--space-5);
         margin-bottom: var(--space-3);
+      }
+
+
+      /* Rich Event Cards */
+      .event-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-6);
+      }
+
+      .event-card {
+        background: var(--color-surface);
+        border-radius: var(--radius-xl);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .event-cover {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: var(--color-surface-offset);
+      }
+
+      .event-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .event-cover .badge {
+        position: absolute;
+        top: var(--space-3);
+        left: var(--space-3);
+        margin: 0;
+        backdrop-filter: blur(6px);
+        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
+        color: white;
+      }
+
+      .event-body {
+        padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        flex: 1;
+      }
+
+      .event-city {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+
+      .event-card h3 {
+        font-size: var(--text-lg);
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      .event-meta {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+      }
+
+      .event-meta strong {
+        color: var(--color-text);
+      }
+
+      .event-desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+
+      .event-program {
+        background: var(--color-surface-offset);
+        border-radius: var(--radius-md);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .event-program summary {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-text);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .event-program summary::before {
+        content: "▸";
+        color: var(--color-primary);
+        transition: transform 200ms;
+        display: inline-block;
+      }
+
+      .event-program[open] summary::before {
+        transform: rotate(90deg);
+      }
+
+      .event-program[open] summary {
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+      }
+
+      .event-program ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li::before {
+        content: "·";
+        color: var(--color-primary);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .event-staff-note {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        font-style: italic;
+      }
+
+      .event-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-top: auto;
+        padding-top: var(--space-2);
+      }
+
+      .btn-event {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-weight: 500;
+        border: 1px solid transparent;
+        text-decoration: none;
+        transition: background 180ms ease, border-color 180ms ease;
+      }
+
+      .btn-map {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-map:hover { background: var(--color-surface-offset); }
+
+      .btn-brochure {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-brochure:hover { background: var(--color-surface-offset); }
+
+      .btn-whatsapp {
+        background: #25d366;
+        color: white;
+        border-color: #25d366;
+        flex: 1;
+        justify-content: center;
+      }
+      .btn-whatsapp:hover { background: #1ebe5d; }
+
+      @media (max-width: 980px) {
+        .event-list { grid-template-columns: 1fr; }
+        .event-cover { height: 200px; }
       }
 
       .gallery-grid {
@@ -622,15 +750,203 @@
           grid-template-columns: 1fr;
         }
 
-        .event-list {
-          grid-template-columns: 1fr;
-        }
-
         .staff-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .gallery-grid {
+  
+      /* Rich Event Cards */
+      .event-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-6);
+      }
+
+      .event-card {
+        background: var(--color-surface);
+        border-radius: var(--radius-xl);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .event-cover {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: var(--color-surface-offset);
+      }
+
+      .event-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .event-cover .badge {
+        position: absolute;
+        top: var(--space-3);
+        left: var(--space-3);
+        margin: 0;
+        backdrop-filter: blur(6px);
+        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
+        color: white;
+      }
+
+      .event-body {
+        padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        flex: 1;
+      }
+
+      .event-city {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+
+      .event-card h3 {
+        font-size: var(--text-lg);
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      .event-meta {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+      }
+
+      .event-meta strong {
+        color: var(--color-text);
+      }
+
+      .event-desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+
+      .event-program {
+        background: var(--color-surface-offset);
+        border-radius: var(--radius-md);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .event-program summary {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-text);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .event-program summary::before {
+        content: "▸";
+        color: var(--color-primary);
+        transition: transform 200ms;
+        display: inline-block;
+      }
+
+      .event-program[open] summary::before {
+        transform: rotate(90deg);
+      }
+
+      .event-program[open] summary {
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+      }
+
+      .event-program ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li::before {
+        content: "·";
+        color: var(--color-primary);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .event-staff-note {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        font-style: italic;
+      }
+
+      .event-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-top: auto;
+        padding-top: var(--space-2);
+      }
+
+      .btn-event {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-weight: 500;
+        border: 1px solid transparent;
+        text-decoration: none;
+        transition: background 180ms ease, border-color 180ms ease;
+      }
+
+      .btn-map {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-map:hover { background: var(--color-surface-offset); }
+
+      .btn-brochure {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-brochure:hover { background: var(--color-surface-offset); }
+
+      .btn-whatsapp {
+        background: #25d366;
+        color: white;
+        border-color: #25d366;
+        flex: 1;
+        justify-content: center;
+      }
+      .btn-whatsapp:hover { background: #1ebe5d; }
+
+      @media (max-width: 980px) {
+        .event-list { grid-template-columns: 1fr; }
+        .event-cover { height: 200px; }
+      }
+
+      .gallery-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -683,15 +999,203 @@
           padding-inline: var(--space-4);
         }
 
-        .event-list {
-          grid-template-columns: 1fr;
-        }
-
         .staff-grid {
           grid-template-columns: 1fr;
         }
 
-        .gallery-grid {
+  
+      /* Rich Event Cards */
+      .event-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-6);
+      }
+
+      .event-card {
+        background: var(--color-surface);
+        border-radius: var(--radius-xl);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.85);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .event-cover {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: var(--color-surface-offset);
+      }
+
+      .event-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .event-cover .badge {
+        position: absolute;
+        top: var(--space-3);
+        left: var(--space-3);
+        margin: 0;
+        backdrop-filter: blur(6px);
+        background: color-mix(in oklab, var(--color-primary) 80%, transparent);
+        color: white;
+      }
+
+      .event-body {
+        padding: var(--space-5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        flex: 1;
+      }
+
+      .event-city {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+
+      .event-card h3 {
+        font-size: var(--text-lg);
+        line-height: 1.3;
+        margin: 0;
+      }
+
+      .event-meta {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.7;
+      }
+
+      .event-meta strong {
+        color: var(--color-text);
+      }
+
+      .event-desc {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+
+      .event-program {
+        background: var(--color-surface-offset);
+        border-radius: var(--radius-md);
+        border: 1px solid oklch(from var(--color-border) l c h / 0.6);
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .event-program summary {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-text);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+
+      .event-program summary::before {
+        content: "▸";
+        color: var(--color-primary);
+        transition: transform 200ms;
+        display: inline-block;
+      }
+
+      .event-program[open] summary::before {
+        transform: rotate(90deg);
+      }
+
+      .event-program[open] summary {
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+      }
+
+      .event-program ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li {
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+
+      .event-program ul li::before {
+        content: "·";
+        color: var(--color-primary);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .event-staff-note {
+        font-size: var(--text-xs);
+        color: var(--color-text-faint);
+        font-style: italic;
+      }
+
+      .event-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-top: auto;
+        padding-top: var(--space-2);
+      }
+
+      .btn-event {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-weight: 500;
+        border: 1px solid transparent;
+        text-decoration: none;
+        transition: background 180ms ease, border-color 180ms ease;
+      }
+
+      .btn-map {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-map:hover { background: var(--color-surface-offset); }
+
+      .btn-brochure {
+        background: var(--color-surface-2);
+        border-color: var(--color-border);
+        color: var(--color-text-muted);
+      }
+      .btn-brochure:hover { background: var(--color-surface-offset); }
+
+      .btn-whatsapp {
+        background: #25d366;
+        color: white;
+        border-color: #25d366;
+        flex: 1;
+        justify-content: center;
+      }
+      .btn-whatsapp:hover { background: #1ebe5d; }
+
+      @media (max-width: 980px) {
+        .event-list { grid-template-columns: 1fr; }
+        .event-cover { height: 200px; }
+      }
+
+      .gallery-grid {
           grid-template-columns: 1fr;
         }
 
@@ -712,10 +1216,6 @@
         }
 
         .staff-card {
-          padding: var(--space-4);
-        }
-
-        .event-card {
           padding: var(--space-4);
         }
       }
@@ -891,100 +1391,170 @@
           </p>
 
           <div class="event-list">
+
             <!-- Firenze Quantica -->
             <article class="event-card">
-              <span class="badge">Evento in evidenza</span>
-              <span class="event-city">Firenze Quantica</span>
-              <h3>Guarigione quantica di gruppo</h3>
-              <p class="event-meta">
-                Domenica 12 aprile 2026 · 10:00 – 18:00<br />
-                Circolo La Loggetta · Via Aretina 301 · Firenze (FI)
-              </p>
-              <p>
-                Una giornata di pratiche energetiche, connessione al sé
-                superiore e meditazioni guidate per trasmutare le emozioni
-                negative in positive e portare luce nelle aree della vita che
-                chiedono di essere guarite.
-              </p>
-              <ul>
-                <li>Tecniche di guarigione quantica</li>
-                <li>Trasmutazione emozionale</li>
-                <li>Connessione con il sé superiore</li>
-                <li>Pratiche sincronizzate</li>
-                <li>Meditazioni guidate</li>
-              </ul>
-              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+              <div class="event-cover">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg"
+                  alt="Firenze"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <span class="badge">Evento in evidenza</span>
+              </div>
+              <div class="event-body">
+                <span class="event-city">Firenze Quantica</span>
+                <h3>Guarigione quantica di gruppo</h3>
+                <p class="event-meta">
+                  <strong>📅 Domenica 12 aprile 2026 · 10:00–18:00</strong><br />
+                  📍 Circolo La Loggetta · Via Aretina 301 · Firenze (FI)
+                </p>
+                <p class="event-desc">
+                  Una giornata di pratiche energetiche, connessione al sé superiore
+                  e meditazioni guidate per trasmutare le emozioni negative in positive.
+                </p>
+                <details class="event-program">
+                  <summary>Programma della giornata</summary>
+                  <ul>
+                    <li>Tecniche di guarigione quantica</li>
+                    <li>Trasmutazione emozionale</li>
+                    <li>Connessione con il sé superiore</li>
+                    <li>Pratiche sincronizzate di gruppo</li>
+                    <li>Meditazioni guidate</li>
+                  </ul>
+                </details>
+                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-actions">
+                  <a class="btn-event btn-map" href="https://maps.google.com/?q=Circolo+La+Loggetta+Via+Aretina+301+Firenze" target="_blank" rel="noopener">📍 Mappa</a>
+                  <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-firenze-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Firenze%20del%2012%20aprile" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+              </div>
             </article>
 
             <!-- Lucca Quantica -->
             <article class="event-card">
-              <span class="event-city">Lucca Quantica</span>
-              <h3>Danza dei 7 Veli – Il Risveglio dell'Essenza</h3>
-              <p class="event-meta">
-                Domenica 19 aprile 2026 · 10:00 – 18:00<br />
-                Via Ludovica 1658 · Sesto di Moriano · Lucca (LU)
-              </p>
-              <p>
-                Un percorso simbolico attraverso i 7 veli che separano l'essere
-                umano dalla propria essenza più autentica. Danza, guarigione
-                quantica e pratiche energetiche per riconnettersi a sé stessi
-                in profondità.
-              </p>
-              <ul>
-                <li>Guarigione quantica di gruppo</li>
-                <li>Danza libera</li>
-                <li>Meditazione guidata</li>
-                <li>Pratiche energetiche</li>
-                <li>Riequilibrio chakra</li>
-              </ul>
-              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+              <div class="event-cover">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg"
+                  alt="Lucca"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+              </div>
+              <div class="event-body">
+                <span class="event-city">Lucca Quantica</span>
+                <h3>Danza dei 7 Veli – Il Risveglio dell'Essenza</h3>
+                <p class="event-meta">
+                  <strong>📅 Domenica 19 aprile 2026 · 10:00–18:00</strong><br />
+                  📍 Via Ludovica 1658 · Sesto di Moriano · Lucca (LU)
+                </p>
+                <p class="event-desc">
+                  Un percorso simbolico attraverso i 7 veli che separano l'essere umano
+                  dalla propria essenza più autentica. Danza, guarigione quantica e pratiche
+                  energetiche per riconnettersi in profondità.
+                </p>
+                <details class="event-program">
+                  <summary>Programma della giornata</summary>
+                  <ul>
+                    <li>Guarigione quantica di gruppo</li>
+                    <li>Danza libera — i 7 veli dell'essenza</li>
+                    <li>Meditazione guidata</li>
+                    <li>Pratiche energetiche</li>
+                    <li>Riequilibrio chakra</li>
+                  </ul>
+                </details>
+                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-actions">
+                  <a class="btn-event btn-map" href="https://maps.google.com/?q=Via+Ludovica+1658+Sesto+di+Moriano+Lucca" target="_blank" rel="noopener">📍 Mappa</a>
+                  <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-lucca-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Lucca%20del%2019%20aprile" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+              </div>
             </article>
 
             <!-- Piacenza Quantica -->
             <article class="event-card">
-              <span class="event-city">Piacenza Quantica</span>
-              <h3>Guarigione quantica di gruppo</h3>
-              <p class="event-meta">
-                Sabato 30 maggio 2026 · 10:00 – 18:00<br />
-                Il Soffio Vitale · Piacenza (PC)
-              </p>
-              <p>
-                Una giornata di crescita e consapevolezza a Piacenza:
-                tecniche di guarigione quantica, trasmutazione emozionale,
-                pratiche sincronizzate e meditazioni guidate per ritrovare
-                equilibrio e chiarezza interiore.
-              </p>
-              <ul>
-                <li>Tecniche di guarigione quantica</li>
-                <li>Trasmutazione emozionale</li>
-                <li>Connessione con il sé superiore</li>
-                <li>Pratiche sincronizzate</li>
-                <li>Meditazioni guidate</li>
-              </ul>
-              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+              <div class="event-cover">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/piacenza-piazza-cavalli_36bebc55.jpg"
+                  alt="Piacenza - Piazza Cavalli"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+              </div>
+              <div class="event-body">
+                <span class="event-city">Piacenza Quantica</span>
+                <h3>Guarigione quantica di gruppo</h3>
+                <p class="event-meta">
+                  <strong>📅 Sabato 30 maggio 2026 · 10:00–18:00</strong><br />
+                  📍 Il Soffio Vitale · Piacenza (PC)
+                </p>
+                <p class="event-desc">
+                  Una giornata di crescita e consapevolezza: guarigione quantica di gruppo,
+                  trasmutazione emozionale e meditazioni guidate per ritrovare equilibrio
+                  e chiarezza interiore.
+                </p>
+                <details class="event-program">
+                  <summary>Programma della giornata</summary>
+                  <ul>
+                    <li>Tecniche di guarigione quantica</li>
+                    <li>Trasmutazione emozionale</li>
+                    <li>Connessione con il sé superiore</li>
+                    <li>Pratiche sincronizzate di gruppo</li>
+                    <li>Meditazioni guidate</li>
+                  </ul>
+                </details>
+                <p class="event-staff-note">Con Stefano Balducci e il gruppo</p>
+                <div class="event-actions">
+                  <a class="btn-event btn-map" href="https://maps.google.com/?q=Il+Soffio+Vitale+Piacenza" target="_blank" rel="noopener">📍 Mappa</a>
+                  <a class="btn-event btn-brochure" href="https://percorsodicrescitalucca.it/brochures/brochure-piacenza-quantica.pdf" target="_blank" rel="noopener">📄 Brochure</a>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Piacenza%20del%2030%20maggio" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+              </div>
             </article>
+
             <!-- Vicenza -->
             <article class="event-card">
-              <span class="event-city">Vicenza</span>
-              <h3>Guarigione quantica di gruppo</h3>
-              <p class="event-meta">
-                Domenica 31 maggio 2026 · 10:00 – 18:00<br />
-                Strada di Saviabona 328 · Vicenza (VI)
-              </p>
-              <p>
-                Una giornata di pratiche energetiche, meditazioni guidate e
-                guarigione quantica di gruppo immersi nell'energia del Veneto.
-                Il pranzo è in condivisione: ognuno porta qualcosa da gustare
-                insieme.
-              </p>
-              <ul>
-                <li>Tecniche di guarigione quantica</li>
-                <li>Meditazioni guidate</li>
-                <li>Pranzo condiviso</li>
-                <li>Contributo spese: €40</li>
-              </ul>
-              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+              <div class="event-cover">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663319415429/VRhBspmQfq6mdBX5qEfA9v/vicenza-hero_8d176b67.jpg"
+                  alt="Vicenza"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+              </div>
+              <div class="event-body">
+                <span class="event-city">Vicenza</span>
+                <h3>Guarigione quantica di gruppo</h3>
+                <p class="event-meta">
+                  <strong>📅 Domenica 31 maggio 2026 · 10:00–18:00</strong><br />
+                  📍 Strada di Saviabona 328 · Vicenza (VI)
+                </p>
+                <p class="event-desc">
+                  Una giornata di pratiche energetiche e guarigione quantica di gruppo.
+                  Il pranzo è in condivisione: ognuno porta qualcosa da gustare insieme.
+                  Contributo spese: €40.
+                </p>
+                <details class="event-program">
+                  <summary>Programma della giornata</summary>
+                  <ul>
+                    <li>Tecniche di guarigione quantica</li>
+                    <li>Pratiche energetiche sincronizzate</li>
+                    <li>Meditazioni guidate</li>
+                    <li>Pranzo condiviso — ognuno porta qualcosa</li>
+                    <li>Condivisione e integrazione pomeridiana</li>
+                  </ul>
+                </details>
+                <p class="event-staff-note">Con Stefano Balducci e il gruppo · Contributo: €40</p>
+                <div class="event-actions">
+                  <a class="btn-event btn-map" href="https://maps.google.com/?q=Strada+di+Saviabona+328+Vicenza" target="_blank" rel="noopener">📍 Mappa</a>
+                  <a class="btn-event btn-whatsapp" href="https://wa.me/393423033404?text=Ciao%20Stefano%2C%20vorrei%20informazioni%20sull%27evento%20di%20Vicenza%20del%2031%20maggio" target="_blank" rel="noopener">💬 Scrivi a Stefano Balducci</a>
+                </div>
+              </div>
             </article>
+
           </div>
         </div>
       </section>
