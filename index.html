@@ -584,12 +584,27 @@
           </div>
           <div class="card">
             <h3>Scrivi un messaggio</h3>
-            <form>
-              <label>Nome e cognome<input type="text" name="nome" autocomplete="name"/></label>
-              <label>Email<input type="email" name="email" autocomplete="email"/></label>
-              <label>Messaggio<textarea name="messaggio"></textarea></label>
-              <button type="submit" class="btn btn-primary">Invia richiesta</button>
+            <form id="contattoForm">
+              <label>Nome e cognome<input type="text" id="nome" name="nome" autocomplete="name"/></label>
+              <label>Email<input type="email" id="email" name="email" autocomplete="email"/></label>
+              <label>Messaggio<textarea id="messaggio" name="messaggio"></textarea></label>
+              <button type="submit" class="btn btn-primary">💬 Invia su WhatsApp</button>
             </form>
+            <script>
+              document.getElementById('contattoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nome = document.getElementById('nome').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const msg = document.getElementById('messaggio').value.trim();
+                if (!nome || !msg) { alert('Per favore compila almeno nome e messaggio.'); return; }
+                const testo = encodeURIComponent(
+                  'Ciao Stefano, sono ' + nome +
+                  (email ? ' (' + email + ')' : '') +
+                  '.\n\n' + msg
+                );
+                window.open('https://wa.me/393423033404?text=' + testo, '_blank');
+              });
+            </script>
           </div>
         </div>
       </section>
