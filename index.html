@@ -273,7 +273,15 @@
       .hero h1 {
         font-size: var(--text-2xl);
         line-height: 1.1;
+        margin-bottom: var(--space-4);
+      }
+
+      .hero-lead {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
         margin-bottom: var(--space-6);
+        max-width: 44ch;
+        margin-inline: auto;
       }
 
       .hero-actions {
@@ -395,6 +403,21 @@
       .event-card p {
         font-size: var(--text-sm);
         color: var(--color-text-muted);
+      }
+
+      .event-card ul {
+        list-style: none;
+        padding: 0;
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .event-card ul li::before {
+        content: "· ";
+        color: var(--color-primary);
       }
 
       .badge {
@@ -610,7 +633,6 @@
 
         <nav class="nav-links" aria-label="Navigazione principale">
           <a href="#chi-sono">Chi sono</a>
-          <a href="#percorsi">Percorsi</a>
           <a href="#eventi">Eventi</a>
           <a href="#galleria">Galleria</a>
           <a href="#faq">FAQ</a>
@@ -651,7 +673,6 @@
 
         <div class="nav-panel" id="navPanel" aria-label="Menu mobile">
           <a href="#chi-sono">Chi sono</a>
-          <a href="#percorsi">Percorsi</a>
           <a href="#eventi">Eventi</a>
           <a href="#galleria">Galleria</a>
           <a href="#faq">FAQ</a>
@@ -666,7 +687,7 @@
         <div class="site-shell hero-grid">
           <div class="hero-card">
             <img
-              src="./assets/Scala.jpg"
+              src="./Scala.jpg"
               alt="Scala luminosa tra le nuvole con persone che salgono"
               width="1429"
               height="803"
@@ -678,7 +699,11 @@
             <div class="eyebrow">
               Eventi dal vivo · Guarigione quantica di gruppo
             </div>
-            <h1>Guarigione quantica</h1>
+            <h1>Guarisci insieme.<br>Trasforma la tua energia.</h1>
+            <p class="hero-lead">
+              Giornate di presenza, pratiche energetiche e guarigione quantica
+              di gruppo — per chi sente il richiamo di un cambiamento reale.
+            </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#eventi">Vedi gli eventi</a>
               <a class="btn btn-secondary" href="#contatti">
@@ -695,16 +720,16 @@
           <div>
             <h2 class="section-title">Chi sono</h2>
             <p class="section-lead">
-              Stefano Balducci è un operatore olistico specializzato in
-              tecniche energetiche e guarigione spirituale, con un lavoro
-              centrato sulla persona, sulla presenza e sull’ascolto del corpo.
-              [file:145]
+              Stefano Balducci è un operatore olistico con anni di esperienza
+              in tecniche energetiche e guarigione spirituale. Il suo lavoro è
+              centrato sulla persona: sulla presenza, sull'ascolto del corpo e
+              sull'accompagnamento interiore.
             </p>
             <p>
-              Nei materiali disponibili è definito operatore olistico
-              specializzato in pranoterapia, guarigione michelica e Metodo
-              Ankalà, con un approccio che integra lavoro energetico, consapevolezza
-              interiore e pratiche di gruppo. [file:145][file:140]
+              Specializzato in pranoterapia, guarigione michelica e Metodo
+              Ankalà, Stefano integra lavoro energetico, consapevolezza
+              profonda e pratiche di gruppo in un percorso che rispetta il
+              ritmo di ciascuno.
             </p>
           </div>
 
@@ -712,61 +737,16 @@
             <h3>Come lavora</h3>
             <ul>
               <li>
-                Approccio basato su ascolto, umiltà e puro intento, con
-                attenzione al percorso interiore della persona. [file:140]
+                Approccio fondato su ascolto, umiltà e puro intento, con
+                attenzione al percorso interiore di ogni partecipante.
               </li>
               <li>
                 Incontri individuali e di gruppo, in collaborazione con altri
-                operatori del progetto quando necessario. [file:145]
+                operatori quando il lavoro lo richiede.
               </li>
               <li>
                 Focus su energia, corpi sottili, memoria cellulare e
-                integrazione delle esperienze vissute. [file:140]
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- PERCORSI -->
-      <section id="percorsi">
-        <div class="site-shell two-col">
-          <div>
-            <h2 class="section-title">Percorsi</h2>
-            <p class="section-lead">
-              Il Percorso di Crescita e Consapevolezza è una struttura di due
-              giorni che lavora su umiltà, puro intento, anima, energia e
-              corpi sottili attraverso pratica reale, esperienze condivise e
-              momenti di integrazione. [file:140]
-            </p>
-            <p>
-              Il lavoro comprende psicomatica, memoria cellulare, esercizi di
-              connessione energetica e pratiche guidate con la presenza degli
-              operatori, in un contesto di gruppo protetto. [file:140]
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Cosa trovi nel percorso</h3>
-            <ul>
-              <li>Obiettivo del percorso: crescita, consapevolezza e guarigione.</li>
-              <li>
-                Temi affrontati: energia, anima, corpi sottili, emozioni e
-                memoria cellulare. [file:140]
-              </li>
-              <li>
-                Struttura della due giorni: momenti teorici, pratica
-                energetica, meditazioni guidate e condivisione in cerchio.
-                [file:140]
-              </li>
-              <li>
-                Esperienza pratica di gruppo, con spazio per domande e
-                integrazione personale. [file:140]
-              </li>
-              <li>
-                A chi è rivolto: persone che sentono il bisogno di un lavoro
-                concreto su di sé, anche senza esperienza precedente.
-                [file:140][file:155]
+                integrazione delle esperienze vissute.
               </li>
             </ul>
           </div>
@@ -778,9 +758,9 @@
         <div class="site-shell">
           <h2 class="section-title">Eventi</h2>
           <p class="section-lead">
-            Giornate di guarigione quantica di gruppo in presenza, con lavoro
-            energetico, meditazioni guidate e trasmutazione delle emozioni
-            negative in positive. [web:169][web:170]
+            Giornate in presenza dedicate alla guarigione quantica di gruppo —
+            un lavoro energetico collettivo per trasmutare le emozioni,
+            riequilibrare i chakra e riconnetterti con la tua essenza.
           </p>
 
           <div class="event-list">
@@ -791,31 +771,45 @@
               <h3>Guarigione quantica di gruppo</h3>
               <p class="event-meta">
                 Domenica 12 aprile 2026 · 10:00 – 18:00<br />
-                Circolo La Loggetta · Via Aretina 301 · Firenze (FI) [file:145][web:169]
+                Circolo La Loggetta · Via Aretina 301 · Firenze (FI)
               </p>
               <p>
-                Una giornata dedicata alla trasmutazione delle emozioni
-                negative in positive attraverso la guarigione quantica di
-                gruppo, con pratiche energetiche, connessione al sé superiore e
-                meditazioni guidate. [web:169]
+                Una giornata di pratiche energetiche, connessione al sé
+                superiore e meditazioni guidate per trasmutare le emozioni
+                negative in positive e portare luce nelle aree della vita che
+                chiedono di essere guarite.
               </p>
+              <ul>
+                <li>Tecniche di guarigione quantica</li>
+                <li>Trasmutazione emozionale</li>
+                <li>Connessione con il sé superiore</li>
+                <li>Pratiche sincronizzate</li>
+                <li>Meditazioni guidate</li>
+              </ul>
               <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
             </article>
 
             <!-- Lucca Quantica -->
             <article class="event-card">
               <span class="event-city">Lucca Quantica</span>
-              <h3>Danza dei 7 Veli – Il Risveglio dell’Essenza</h3>
+              <h3>Danza dei 7 Veli – Il Risveglio dell'Essenza</h3>
               <p class="event-meta">
                 Domenica 19 aprile 2026 · 10:00 – 18:00<br />
-                Via Ludovica 1658 · Sesto di Moriano · Lucca (LU) [web:169][web:170]
+                Via Ludovica 1658 · Sesto di Moriano · Lucca (LU)
               </p>
               <p>
-                Un percorso simbolico attraverso i 7 veli che separano
-                l'essere umano dalla propria essenza più autentica: guarigione
-                quantica di gruppo, danza libera, meditazioni guidate e
-                pratiche energetiche per riequilibrare i chakra. [web:169]
+                Un percorso simbolico attraverso i 7 veli che separano l'essere
+                umano dalla propria essenza più autentica. Danza, guarigione
+                quantica e pratiche energetiche per riconnettersi a sé stessi
+                in profondità.
               </p>
+              <ul>
+                <li>Guarigione quantica di gruppo</li>
+                <li>Danza libera</li>
+                <li>Meditazione guidata</li>
+                <li>Pratiche energetiche</li>
+                <li>Riequilibrio chakra</li>
+              </ul>
               <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
             </article>
 
@@ -824,15 +818,22 @@
               <span class="event-city">Piacenza Quantica</span>
               <h3>Guarigione quantica di gruppo</h3>
               <p class="event-meta">
-                Sabato 17 maggio 2026 · 10:00 – 18:00<br />
-                Il Soffio Vitale · Piacenza (PC) [web:169]
+                Sabato 30 maggio 2026 · 10:00 – 18:00<br />
+                Il Soffio Vitale · Piacenza (PC)
               </p>
               <p>
-                Un giorno di crescita e consapevolezza a Piacenza, dedicato
-                alla guarigione quantica di gruppo: tecniche di guarigione,
-                trasmutazione emozionale, pratiche sincronizzate e meditazioni
-                guidate. [web:169]
+                Una giornata di crescita e consapevolezza a Piacenza:
+                tecniche di guarigione quantica, trasmutazione emozionale,
+                pratiche sincronizzate e meditazioni guidate per ritrovare
+                equilibrio e chiarezza interiore.
               </p>
+              <ul>
+                <li>Tecniche di guarigione quantica</li>
+                <li>Trasmutazione emozionale</li>
+                <li>Connessione con il sé superiore</li>
+                <li>Pratiche sincronizzate</li>
+                <li>Meditazioni guidate</li>
+              </ul>
               <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
             </article>
           </div>
@@ -845,28 +846,27 @@
           <h2 class="section-title">Galleria</h2>
           <p class="section-lead">
             Le foto reali dei gruppi, del lavoro sul lettino e delle sessioni
-            in sala mostrano concretamente l’attività svolta, oltre ogni
-            descrizione. [file:155]
+            in sala mostrano concretamente l'attività svolta, oltre ogni
+            descrizione.
           </p>
 
           <div class="gallery-grid">
-            <!-- Sostituisci i src con i nomi reali delle tue immagini -->
             <img
-              src="./assets/foto-1.jpg"
+              src="./foto-1.jpg"
               alt="Momento di lavoro di gruppo durante un incontro"
               width="800"
               height="600"
               loading="lazy"
             />
             <img
-              src="./assets/foto-2.jpg"
+              src="./foto-2.jpg"
               alt="Sessione sul lettino durante la guarigione energetica"
               width="800"
               height="600"
               loading="lazy"
             />
             <img
-              src="./assets/foto-3.jpg"
+              src="./foto-3.jpg"
               alt="Sala allestita per l'evento di guarigione quantica di gruppo"
               width="800"
               height="600"
@@ -882,16 +882,16 @@
           <h2 class="section-title">Domande frequenti</h2>
           <p class="section-lead">
             Alcune risposte pratiche su come partecipare, cosa aspettarsi e
-            come prepararsi agli incontri. [file:155]
+            come prepararsi agli incontri.
           </p>
 
           <div class="faq-grid">
             <details>
               <summary>Serve esperienza per partecipare?</summary>
               <p>
-                No, il percorso e gli eventi sono pensati anche per chi si
-                avvicina per la prima volta al lavoro energetico: l'importante
-                è il desiderio sincero di lavorare su di sé. [file:155]
+                No. Gli eventi sono aperti anche a chi si avvicina per la
+                prima volta al lavoro energetico. L'unica cosa che serve è il
+                desiderio sincero di lavorare su di sé.
               </p>
             </details>
 
@@ -899,29 +899,26 @@
               <summary>Cosa devo portare agli incontri?</summary>
               <p>
                 Abbigliamento comodo, un quaderno per annotare ciò che emerge,
-                una borraccia d’acqua e, se possibile, un plaid o telo per i
-                momenti di rilassamento. [file:155]
+                una borraccia d'acqua e, se possibile, un plaid o telo per i
+                momenti di rilassamento.
               </p>
             </details>
 
             <details>
-              <summary>
-                Qual è la differenza tra evento singolo e percorso?
-              </summary>
+              <summary>Gli incontri sono adatti anche agli scettici?</summary>
               <p>
-                L’evento singolo è una giornata intensa di guarigione quantica
-                di gruppo; il percorso di due giorni lavora in modo più
-                strutturato su temi come memoria cellulare, corpi sottili ed
-                esercizi di integrazione. [file:140][file:155]
+                Assolutamente sì. Non chiediamo di credere a nulla in anticipo,
+                ma solo di essere aperti all'esperienza. Il percorso è basato
+                sulla pratica diretta, non sulla teoria.
               </p>
             </details>
 
             <details>
-              <summary>Come avviene l’iscrizione?</summary>
+              <summary>Come avviene l'iscrizione?</summary>
               <p>
-                Puoi scrivere all’email indicata o inviare un messaggio WhatsApp
-                a Stefano Balducci: riceverai conferma, dettagli logistici e
-                modalità di contributo. [file:145][file:155]
+                Scrivi una email o un messaggio WhatsApp a Stefano Balducci.
+                Riceverai conferma, tutti i dettagli logistici e le modalità
+                di contributo.
               </p>
             </details>
           </div>
@@ -935,20 +932,19 @@
             <h2 class="section-title">Contatti e iscrizioni</h2>
             <p class="section-lead">
               Per informazioni su eventi e percorsi, richieste personali o
-              iscrizioni, puoi contattare direttamente Stefano Balducci.
-              [file:145]
+              iscrizioni, contatta direttamente Stefano Balducci — risponde
+              personalmente a ogni messaggio.
             </p>
             <p>
               Email:
-              <a href="mailto:percorsodicrescitalucca@gmail.com">
-                percorsodicrescitalucca@gmail.com
+              <a href="/cdn-cgi/l/email-protection#a2d2c7d0c1cdd0d1cdc6cbc1d0c7d1c1cbd6c3ced7c1c1c3e2c5cfc3cbce8cc1cdcf">
+                <span class="__cf_email__" data-cfemail="0e7e6b7c6d617c7d616a676d7c6b7d6d677a6f627b6d6d6f4e69636f6762206d6163">[email&#160;protected]</span>
               </a>
               <br />
               WhatsApp:
               <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">
                 342&nbsp;303&nbsp;3404
               </a>
-              [file:145]
             </p>
           </div>
 
@@ -977,11 +973,11 @@
     </main>
 
     <footer>
-      © 2026 · Guarigione quantica · Eventi e percorsi in Toscana,
-      Emilia-Romagna, Veneto e in tutta Italia. [file:145][web:169]
+      © 2026 · Guarigione Energetica · Stefano Balducci · Eventi e percorsi
+      in Toscana, Emilia-Romagna e in tutta Italia.
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       (function () {
         const toggle = document.querySelector("[data-theme-toggle]");
         const root = document.documentElement;
@@ -1013,17 +1009,4 @@
         const mobileBtn = document.getElementById("mobileMenuBtn");
         mobileBtn?.addEventListener("click", () => {
           const open = header.classList.toggle("open");
-          mobileBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        });
-
-        document
-          .querySelectorAll(".nav-panel a")
-          .forEach((a) =>
-            a.addEventListener("click", () =>
-              header.classList.remove("open")
-            )
-          );
-      })();
-    </script>
-  </body>
-</html>
+          mobileBtn.setAttribute("aria-expanded", open ? "true" : "f
