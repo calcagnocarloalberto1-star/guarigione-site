@@ -316,6 +316,11 @@
       object-fit:cover;
       border:1px solid oklch(from var(--primary) l c h/.3)}
     .bro-staff-name{font-size:var(--tx-xs);font-weight:600;color:var(--text)}
+    .bro-meta,
+    .bro-program ul li,
+    .bro-body p {
+      text-align: left;
+    }
     .bro-foot{padding:var(--sp-4) var(--sp-6) var(--sp-5);
       border-top:1px solid oklch(from var(--border) l c h/.5);
       background:var(--surface);
@@ -397,17 +402,25 @@
       hyphens: auto;
       -webkit-hyphens: auto;
     }
-    /* Brochure modal */
-    .bro-meta,
-    .bro-program ul li,
-    .bro-body > div > p {
+
+
+    /* Paragrafi sezione eventi */
+    #eventi .sec-lead,
+    #eventi .event-desc,
+    #eventi .event-program-desc {
       text-align: justify;
       hyphens: auto;
       -webkit-hyphens: auto;
     }
-
-    /* Tutti i paragrafi nelle sezioni principali */
-    main section p:not(.eyebrow):not(.event-city):not(.event-staff-name):not(.event-staff-role):not(.staff-name):not(.staff-role):not(.bro-sec-title):not(.event-contact-label):not(.bro-contact-label):not(.event-subtitle) {
+    /* Paragrafi sezione operatori */
+    #staff .sec-lead,
+    #staff .staff-bio {
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+    /* Paragrafi sezione galleria */
+    #galleria .sec-lead {
       text-align: justify;
       hyphens: auto;
       -webkit-hyphens: auto;
