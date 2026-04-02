@@ -2,7 +2,7 @@
 <html lang="it" data-theme="light">
   <head>
     <meta charset="utf-8" />
-    <title>Guarigione quantica · Eventi dal vivo</title>
+    <title>Guarigione quantica · Eventi e percorsi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Font -->
@@ -327,6 +327,38 @@
         max-width: 52ch;
       }
 
+      .two-col {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: var(--space-8);
+        align-items: flex-start;
+      }
+
+      .card {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.85);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .card h3 {
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-3);
+      }
+
+      .card ul {
+        list-style: disc;
+        padding-left: 1.2rem;
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+      }
+
+      .card ul li + li {
+        margin-top: 0.3rem;
+      }
+
       .event-list {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -378,6 +410,7 @@
           var(--color-surface-2)
         );
         color: var(--color-primary-active);
+        margin-bottom: var(--space-2);
       }
 
       .cta-link {
@@ -389,6 +422,75 @@
       .cta-link:hover {
         color: var(--color-primary-hover);
         text-decoration: underline;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .gallery-grid img {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      details {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.85);
+        padding: var(--space-4) var(--space-5);
+        box-shadow: var(--shadow-sm);
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        list-style: none;
+      }
+
+      details[open] summary {
+        color: var(--color-primary);
+      }
+
+      details p {
+        margin-top: var(--space-3);
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+      }
+
+      form {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      label {
+        font-size: var(--text-sm);
+        display: grid;
+        gap: var(--space-1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface-2);
+        font: inherit;
+        color: inherit;
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
       }
 
       footer {
@@ -413,6 +515,14 @@
 
         .event-list {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .faq-grid {
+          grid-template-columns: 1fr;
         }
 
         .mobile-nav-toggle {
@@ -461,6 +571,10 @@
         }
 
         .event-list {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -575,6 +689,90 @@
         </div>
       </section>
 
+      <!-- CHI SONO -->
+      <section id="chi-sono">
+        <div class="site-shell two-col">
+          <div>
+            <h2 class="section-title">Chi sono</h2>
+            <p class="section-lead">
+              Stefano Balducci è un operatore olistico specializzato in
+              tecniche energetiche e guarigione spirituale, con un lavoro
+              centrato sulla persona, sulla presenza e sull’ascolto del corpo.
+              [file:145]
+            </p>
+            <p>
+              Nei materiali disponibili è definito operatore olistico
+              specializzato in pranoterapia, guarigione michelica e Metodo
+              Ankalà, con un approccio che integra lavoro energetico, consapevolezza
+              interiore e pratiche di gruppo. [file:145][file:140]
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Come lavora</h3>
+            <ul>
+              <li>
+                Approccio basato su ascolto, umiltà e puro intento, con
+                attenzione al percorso interiore della persona. [file:140]
+              </li>
+              <li>
+                Incontri individuali e di gruppo, in collaborazione con altri
+                operatori del progetto quando necessario. [file:145]
+              </li>
+              <li>
+                Focus su energia, corpi sottili, memoria cellulare e
+                integrazione delle esperienze vissute. [file:140]
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERCORSI -->
+      <section id="percorsi">
+        <div class="site-shell two-col">
+          <div>
+            <h2 class="section-title">Percorsi</h2>
+            <p class="section-lead">
+              Il Percorso di Crescita e Consapevolezza è una struttura di due
+              giorni che lavora su umiltà, puro intento, anima, energia e
+              corpi sottili attraverso pratica reale, esperienze condivise e
+              momenti di integrazione. [file:140]
+            </p>
+            <p>
+              Il lavoro comprende psicomatica, memoria cellulare, esercizi di
+              connessione energetica e pratiche guidate con la presenza degli
+              operatori, in un contesto di gruppo protetto. [file:140]
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Cosa trovi nel percorso</h3>
+            <ul>
+              <li>Obiettivo del percorso: crescita, consapevolezza e guarigione.</li>
+              <li>
+                Temi affrontati: energia, anima, corpi sottili, emozioni e
+                memoria cellulare. [file:140]
+              </li>
+              <li>
+                Struttura della due giorni: momenti teorici, pratica
+                energetica, meditazioni guidate e condivisione in cerchio.
+                [file:140]
+              </li>
+              <li>
+                Esperienza pratica di gruppo, con spazio per domande e
+                integrazione personale. [file:140]
+              </li>
+              <li>
+                A chi è rivolto: persone che sentono il bisogno di un lavoro
+                concreto su di sé, anche senza esperienza precedente.
+                [file:140][file:155]
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <!-- EVENTI -->
       <section id="eventi">
         <div class="site-shell">
@@ -588,11 +786,12 @@
           <div class="event-list">
             <!-- Firenze Quantica -->
             <article class="event-card">
+              <span class="badge">Evento in evidenza</span>
               <span class="event-city">Firenze Quantica</span>
               <h3>Guarigione quantica di gruppo</h3>
               <p class="event-meta">
                 Domenica 12 aprile 2026 · 10:00 – 18:00<br />
-                Circolo La Loggetta · Via Aretina 301 · Firenze (FI) [web:169][web:170]
+                Circolo La Loggetta · Via Aretina 301 · Firenze (FI) [file:145][web:169]
               </p>
               <p>
                 Una giornata dedicata alla trasmutazione delle emozioni
@@ -640,62 +839,146 @@
         </div>
       </section>
 
-      <!-- Placeholder CHI SONO / PERCORSI / GALLERIA / FAQ / CONTATTI -->
-      <section id="chi-sono">
-        <div class="site-shell">
-          <h2 class="section-title">Chi sono</h2>
-          <p class="section-lead">
-            Qui puoi inserire la biografia di Stefano Balducci come operatore
-            olistico specializzato in tecniche energetiche e guarigione
-            spirituale. [file:145]
-          </p>
-        </div>
-      </section>
-
-      <section id="percorsi">
-        <div class="site-shell">
-          <h2 class="section-title">Percorsi</h2>
-          <p class="section-lead">
-            Qui entrerà il testo del Percorso di Crescita e Consapevolezza con
-            obiettivi, temi e struttura della due giorni. [file:140]
-          </p>
-        </div>
-      </section>
-
+      <!-- GALLERIA -->
       <section id="galleria">
         <div class="site-shell">
           <h2 class="section-title">Galleria</h2>
           <p class="section-lead">
-            Qui potrai richiamare le foto reali dei gruppi e del lavoro sul
-            lettino già presenti nella bozza. [file:155]
+            Le foto reali dei gruppi, del lavoro sul lettino e delle sessioni
+            in sala mostrano concretamente l’attività svolta, oltre ogni
+            descrizione. [file:155]
           </p>
+
+          <div class="gallery-grid">
+            <!-- Sostituisci i src con i nomi reali delle tue immagini -->
+            <img
+              src="./assets/foto-1.jpg"
+              alt="Momento di lavoro di gruppo durante un incontro"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+            <img
+              src="./assets/foto-2.jpg"
+              alt="Sessione sul lettino durante la guarigione energetica"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+            <img
+              src="./assets/foto-3.jpg"
+              alt="Sala allestita per l'evento di guarigione quantica di gruppo"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
+      <!-- FAQ -->
       <section id="faq">
         <div class="site-shell">
           <h2 class="section-title">Domande frequenti</h2>
           <p class="section-lead">
-            Qui potrai riportare le FAQ aggiornate su partecipazione, cosa
-            portare, differenza tra evento singolo e percorso, modalità di
-            iscrizione. [file:155]
+            Alcune risposte pratiche su come partecipare, cosa aspettarsi e
+            come prepararsi agli incontri. [file:155]
           </p>
+
+          <div class="faq-grid">
+            <details>
+              <summary>Serve esperienza per partecipare?</summary>
+              <p>
+                No, il percorso e gli eventi sono pensati anche per chi si
+                avvicina per la prima volta al lavoro energetico: l'importante
+                è il desiderio sincero di lavorare su di sé. [file:155]
+              </p>
+            </details>
+
+            <details>
+              <summary>Cosa devo portare agli incontri?</summary>
+              <p>
+                Abbigliamento comodo, un quaderno per annotare ciò che emerge,
+                una borraccia d’acqua e, se possibile, un plaid o telo per i
+                momenti di rilassamento. [file:155]
+              </p>
+            </details>
+
+            <details>
+              <summary>
+                Qual è la differenza tra evento singolo e percorso?
+              </summary>
+              <p>
+                L’evento singolo è una giornata intensa di guarigione quantica
+                di gruppo; il percorso di due giorni lavora in modo più
+                strutturato su temi come memoria cellulare, corpi sottili ed
+                esercizi di integrazione. [file:140][file:155]
+              </p>
+            </details>
+
+            <details>
+              <summary>Come avviene l’iscrizione?</summary>
+              <p>
+                Puoi scrivere all’email indicata o inviare un messaggio WhatsApp
+                a Stefano Balducci: riceverai conferma, dettagli logistici e
+                modalità di contributo. [file:145][file:155]
+              </p>
+            </details>
+          </div>
         </div>
       </section>
 
+      <!-- CONTATTI -->
       <section id="contatti">
-        <div class="site-shell">
-          <h2 class="section-title">Contatti e iscrizioni</h2>
-          <p class="section-lead">
-            Per informazioni e iscrizioni agli eventi: percorsodicrescitalucca@gmail.com · WhatsApp Stefano Balducci 342 303 3404. [file:145]
-          </p>
+        <div class="site-shell two-col">
+          <div>
+            <h2 class="section-title">Contatti e iscrizioni</h2>
+            <p class="section-lead">
+              Per informazioni su eventi e percorsi, richieste personali o
+              iscrizioni, puoi contattare direttamente Stefano Balducci.
+              [file:145]
+            </p>
+            <p>
+              Email:
+              <a href="mailto:percorsodicrescitalucca@gmail.com">
+                percorsodicrescitalucca@gmail.com
+              </a>
+              <br />
+              WhatsApp:
+              <a href="https://wa.me/393423033404" target="_blank" rel="noopener noreferrer">
+                342&nbsp;303&nbsp;3404
+              </a>
+              [file:145]
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Scrivi un messaggio</h3>
+            <form>
+              <label>
+                Nome e cognome
+                <input type="text" name="nome" autocomplete="name" />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" autocomplete="email" />
+              </label>
+              <label>
+                Messaggio
+                <textarea name="messaggio"></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary">
+                Invia richiesta
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
 
     <footer>
-      © 2026 · Guarigione quantica · Eventi dal vivo in Toscana, Emilia-Romagna,
-      Veneto e in tutta Italia. [web:169]
+      © 2026 · Guarigione quantica · Eventi e percorsi in Toscana,
+      Emilia-Romagna, Veneto e in tutta Italia. [file:145][web:169]
     </footer>
 
     <script>
