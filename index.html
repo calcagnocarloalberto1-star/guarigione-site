@@ -258,11 +258,6 @@
         box-shadow: var(--shadow-lg);
       }
 
-      .hero-card img {
-        width: 100%;
-        height: auto;
-      }
-
       .hero-text {
         text-align: center;
       }
@@ -332,24 +327,9 @@
         max-width: 52ch;
       }
 
-      .two-col {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-        gap: var(--space-8);
-        align-items: flex-start;
-      }
-
-      .card {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-6);
-        box-shadow: var(--shadow-sm);
-      }
-
       .event-list {
         display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: var(--space-4);
       }
 
@@ -364,10 +344,23 @@
         gap: var(--space-3);
       }
 
+      .event-city {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-muted);
+      }
+
+      .event-card h3 {
+        font-size: var(--text-lg);
+      }
+
       .event-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+      }
+
+      .event-card p {
         font-size: var(--text-sm);
         color: var(--color-text-muted);
       }
@@ -387,103 +380,15 @@
         color: var(--color-primary-active);
       }
 
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: var(--space-4);
-      }
-
-      .gallery-grid img {
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-      }
-
-      .faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-4);
-      }
-
-      details {
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.85);
-        padding: var(--space-4) var(--space-5);
-        box-shadow: var(--shadow-sm);
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 600;
-        list-style: none;
-      }
-
-      details[open] summary {
+      .cta-link {
+        font-size: var(--text-sm);
+        font-weight: 500;
         color: var(--color-primary);
       }
 
-      details p {
-        margin-top: var(--space-3);
-        color: var(--color-text-muted);
-      }
-
-      .cta {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: var(--space-6);
-        align-items: flex-start;
-        background: linear-gradient(
-          135deg,
-          color-mix(in oklab, var(--color-surface) 92%, white),
-          color-mix(
-            in oklab,
-            var(--color-surface-2) 92%,
-            var(--color-primary) 8%
-          )
-        );
-        border-radius: var(--radius-xl);
-        border: 1px solid
-          oklch(from var(--color-border) l c h / 0.9);
-        padding: var(--space-8);
-        box-shadow: var(--shadow-lg);
-      }
-
-      .cta h2 {
-        font-size: var(--text-xl);
-        margin-bottom: var(--space-3);
-      }
-
-      .cta p {
-        color: var(--color-text-muted);
-        margin-bottom: var(--space-4);
-      }
-
-      form {
-        display: grid;
-        gap: var(--space-3);
-      }
-
-      label {
-        font-size: var(--text-sm);
-        display: grid;
-        gap: var(--space-1);
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.9rem 1rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--color-border);
-        background: var(--color-surface-2);
-        font: inherit;
-        color: inherit;
-      }
-
-      textarea {
-        min-height: 140px;
-        resize: vertical;
+      .cta-link:hover {
+        color: var(--color-primary-hover);
+        text-decoration: underline;
       }
 
       footer {
@@ -494,9 +399,7 @@
       }
 
       @media (max-width: 980px) {
-        .hero-grid,
-        .two-col,
-        .cta {
+        .hero-grid {
           grid-template-columns: 1fr;
         }
 
@@ -504,16 +407,12 @@
           order: -1;
         }
 
-        .gallery-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .faq-grid {
-          grid-template-columns: 1fr;
-        }
-
         .nav-links {
           display: none;
+        }
+
+        .event-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .mobile-nav-toggle {
@@ -555,13 +454,13 @@
       }
 
       @media (max-width: 640px) {
-        .site-shell,
+        main,
         .header-inner,
-        main {
+        .site-shell {
           padding-inline: var(--space-4);
         }
 
-        .gallery-grid {
+        .event-list {
           grid-template-columns: 1fr;
         }
       }
@@ -676,13 +575,127 @@
         </div>
       </section>
 
-      <!-- QUI puoi reinserire le altre sezioni già definite:
-           Chi sono, Percorsi, Eventi, Galleria, FAQ, Contatti,
-           copiandole dall'HTML precedente se vuoi mantenere quei contenuti. -->
+      <!-- EVENTI -->
+      <section id="eventi">
+        <div class="site-shell">
+          <h2 class="section-title">Eventi</h2>
+          <p class="section-lead">
+            Giornate di guarigione quantica di gruppo in presenza, con lavoro
+            energetico, meditazioni guidate e trasmutazione delle emozioni
+            negative in positive. [web:169][web:170]
+          </p>
+
+          <div class="event-list">
+            <!-- Firenze Quantica -->
+            <article class="event-card">
+              <span class="event-city">Firenze Quantica</span>
+              <h3>Guarigione quantica di gruppo</h3>
+              <p class="event-meta">
+                Domenica 12 aprile 2026 · 10:00 – 18:00<br />
+                Circolo La Loggetta · Via Aretina 301 · Firenze (FI) [web:169][web:170]
+              </p>
+              <p>
+                Una giornata dedicata alla trasmutazione delle emozioni
+                negative in positive attraverso la guarigione quantica di
+                gruppo, con pratiche energetiche, connessione al sé superiore e
+                meditazioni guidate. [web:169]
+              </p>
+              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+            </article>
+
+            <!-- Lucca Quantica -->
+            <article class="event-card">
+              <span class="event-city">Lucca Quantica</span>
+              <h3>Danza dei 7 Veli – Il Risveglio dell’Essenza</h3>
+              <p class="event-meta">
+                Domenica 19 aprile 2026 · 10:00 – 18:00<br />
+                Via Ludovica 1658 · Sesto di Moriano · Lucca (LU) [web:169][web:170]
+              </p>
+              <p>
+                Un percorso simbolico attraverso i 7 veli che separano
+                l'essere umano dalla propria essenza più autentica: guarigione
+                quantica di gruppo, danza libera, meditazioni guidate e
+                pratiche energetiche per riequilibrare i chakra. [web:169]
+              </p>
+              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+            </article>
+
+            <!-- Piacenza Quantica -->
+            <article class="event-card">
+              <span class="event-city">Piacenza Quantica</span>
+              <h3>Guarigione quantica di gruppo</h3>
+              <p class="event-meta">
+                Sabato 17 maggio 2026 · 10:00 – 18:00<br />
+                Il Soffio Vitale · Piacenza (PC) [web:169]
+              </p>
+              <p>
+                Un giorno di crescita e consapevolezza a Piacenza, dedicato
+                alla guarigione quantica di gruppo: tecniche di guarigione,
+                trasmutazione emozionale, pratiche sincronizzate e meditazioni
+                guidate. [web:169]
+              </p>
+              <a class="cta-link" href="#contatti">Info e iscrizioni →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Placeholder CHI SONO / PERCORSI / GALLERIA / FAQ / CONTATTI -->
+      <section id="chi-sono">
+        <div class="site-shell">
+          <h2 class="section-title">Chi sono</h2>
+          <p class="section-lead">
+            Qui puoi inserire la biografia di Stefano Balducci come operatore
+            olistico specializzato in tecniche energetiche e guarigione
+            spirituale. [file:145]
+          </p>
+        </div>
+      </section>
+
+      <section id="percorsi">
+        <div class="site-shell">
+          <h2 class="section-title">Percorsi</h2>
+          <p class="section-lead">
+            Qui entrerà il testo del Percorso di Crescita e Consapevolezza con
+            obiettivi, temi e struttura della due giorni. [file:140]
+          </p>
+        </div>
+      </section>
+
+      <section id="galleria">
+        <div class="site-shell">
+          <h2 class="section-title">Galleria</h2>
+          <p class="section-lead">
+            Qui potrai richiamare le foto reali dei gruppi e del lavoro sul
+            lettino già presenti nella bozza. [file:155]
+          </p>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="site-shell">
+          <h2 class="section-title">Domande frequenti</h2>
+          <p class="section-lead">
+            Qui potrai riportare le FAQ aggiornate su partecipazione, cosa
+            portare, differenza tra evento singolo e percorso, modalità di
+            iscrizione. [file:155]
+          </p>
+        </div>
+      </section>
+
+      <section id="contatti">
+        <div class="site-shell">
+          <h2 class="section-title">Contatti e iscrizioni</h2>
+          <p class="section-lead">
+            Per informazioni e iscrizioni agli eventi: percorsodicrescitalucca@gmail.com · WhatsApp Stefano Balducci 342 303 3404. [file:145]
+          </p>
+        </div>
+      </section>
     </main>
 
     <footer>
-      © 2026 · Guarigione quantica · Contatti e presenza reale
+      © 2026 · Guarigione quantica · Eventi dal vivo in Toscana, Emilia-Romagna,
+      Veneto e in tutta Italia. [web:169]
     </footer>
 
     <script>
@@ -695,17 +708,17 @@
         root.setAttribute("data-theme", mode);
 
         if (toggle) {
-          const setIcon = () => {
+          const setLabel = () => {
             toggle.setAttribute(
               "aria-label",
               "Passa al tema " + (mode === "dark" ? "chiaro" : "scuro")
             );
           };
-          setIcon();
+          setLabel();
           toggle.addEventListener("click", () => {
             mode = mode === "dark" ? "light" : "dark";
             root.setAttribute("data-theme", mode);
-            setIcon();
+            setLabel();
           });
         }
 
