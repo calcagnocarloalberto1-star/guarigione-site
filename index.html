@@ -112,4 +112,622 @@
         transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1),
           background 180ms cubic-bezier(0.16, 1, 0.3, 1),
           border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
-          box-shadow 180ms cubic-be
+          box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 3px;
+        border-radius: var(--radius-sm);
+      }
+
+      .site-shell {
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: var(--space-4);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        background: var(--color-primary);
+        color: white;
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-sm);
+        z-index: 1000;
+      }
+
+      .skip-link:focus-visible {
+        left: var(--space-4);
+        top: var(--space-4);
+      }
+
+      header.site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(
+          in oklab,
+          var(--color-bg) 88%,
+          var(--color-surface) 12%
+        );
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid
+          oklch(from var(--color-border) l c h / 0.6);
+      }
+
+      .header-inner {
+        max-width: var(--content-default);
+        margin-inline: auto;
+        padding-block: var(--space-3);
+        padding-inline: var(--space-4);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-full);
+        border: 1px solid oklch(from var(--color-primary) l c h / 0.35);
+        display: grid;
+        place-items: center;
+      }
+
+      .brand-text strong {
+        display: block;
+        font-size: var(--text-sm);
+      }
+
+      .brand-text span {
+        display: block;
+        font-size: var(--text-xs);
+        color: var(--color-text-muted);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--space-4);
+        font-size: var(--text-sm);
+      }
+
+      .nav-links a {
+        padding-block: 0.1rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary);
+      }
+
+      .theme-toggle {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-full);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.8);
+        display: grid;
+        place-items: center;
+      }
+
+      .mobile-nav-toggle,
+      .nav-panel {
+        display: none;
+      }
+
+      main {
+        max-width: var(--content-default);
+        margin-inline: auto;
+        padding-inline: var(--space-4);
+      }
+
+      section {
+        padding-block: clamp(var(--space-8), 6vw, var(--space-16));
+      }
+
+      .hero {
+        padding-top: clamp(var(--space-12), 8vw, var(--space-20));
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: var(--space-8);
+        align-items: center;
+      }
+
+      .hero-card {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .hero-card img {
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .eyebrow {
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-3);
+      }
+
+      .hero h1 {
+        font-size: var(--text-2xl);
+        line-height: 1.1;
+        margin-bottom: var(--space-6);
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding-inline: var(--space-5);
+        padding-block: 0.7rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        border: 1px solid transparent;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-primary {
+        background: var(--color-primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--color-primary-hover);
+      }
+
+      .btn-secondary {
+        background: var(--color-surface);
+        color: var(--color-text);
+        border-color: var(--color-border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--color-surface-offset);
+      }
+
+      .section-title {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-4);
+      }
+
+      .section-lead {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-6);
+        max-width: 52ch;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: var(--space-8);
+        align-items: flex-start;
+      }
+
+      .card {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.85);
+        padding: var(--space-6);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .event-list {
+        display: grid;
+        gap: var(--space-4);
+      }
+
+      .event-card {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.85);
+        padding: var(--space-5);
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      .event-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: var(--radius-full);
+        padding-inline: var(--space-3);
+        padding-block: 0.2rem;
+        font-size: var(--text-xs);
+        background: color-mix(
+          in oklab,
+          var(--color-primary) 12%,
+          var(--color-surface-2)
+        );
+        color: var(--color-primary-active);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      .gallery-grid img {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-4);
+      }
+
+      details {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.85);
+        padding: var(--space-4) var(--space-5);
+        box-shadow: var(--shadow-sm);
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        list-style: none;
+      }
+
+      details[open] summary {
+        color: var(--color-primary);
+      }
+
+      details p {
+        margin-top: var(--space-3);
+        color: var(--color-text-muted);
+      }
+
+      .cta {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: var(--space-6);
+        align-items: flex-start;
+        background: linear-gradient(
+          135deg,
+          color-mix(in oklab, var(--color-surface) 92%, white),
+          color-mix(
+            in oklab,
+            var(--color-surface-2) 92%,
+            var(--color-primary) 8%
+          )
+        );
+        border-radius: var(--radius-xl);
+        border: 1px solid
+          oklch(from var(--color-border) l c h / 0.9);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .cta h2 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-3);
+      }
+
+      .cta p {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-4);
+      }
+
+      form {
+        display: grid;
+        gap: var(--space-3);
+      }
+
+      label {
+        font-size: var(--text-sm);
+        display: grid;
+        gap: var(--space-1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface-2);
+        font: inherit;
+        color: inherit;
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      footer {
+        padding-block: var(--space-10) var(--space-4);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .two-col,
+        .cta {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card {
+          order: -1;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-nav-toggle {
+          display: grid;
+          width: 32px;
+          height: 32px;
+          border-radius: var(--radius-full);
+          border: 1px solid var(--color-border);
+          place-items: center;
+        }
+
+        .nav-panel {
+          position: absolute;
+          left: 1rem;
+          right: 1rem;
+          top: calc(100% + 0.5rem);
+          padding: var(--space-4);
+          background: var(--color-surface);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
+          box-shadow: var(--shadow-lg);
+          display: none;
+        }
+
+        .site-header.open .nav-panel {
+          display: block;
+        }
+
+        .nav-panel a {
+          display: block;
+          padding-block: 0.75rem;
+          border-bottom: 1px solid
+            oklch(from var(--color-border) l c h / 0.5);
+        }
+
+        .nav-panel a:last-child {
+          border-bottom: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-shell,
+        .header-inner,
+        main {
+          padding-inline: var(--space-4);
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="#contenuto" class="skip-link">Salta al contenuto</a>
+
+    <header class="site-header" id="header">
+      <div class="header-inner site-shell">
+        <a class="brand" href="#top" aria-label="Torna all'inizio">
+          <div class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2v20" />
+              <path d="M4 12h16" />
+              <path d="M6.5 6.5c3.5 3.5 7.5 7.5 11 11" />
+              <path d="M17.5 6.5c-3.5 3.5-7.5 7.5-11 11" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>Guarigione Energetica</strong>
+            <span>Gruppi reali · presenza · ascolto</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Navigazione principale">
+          <a href="#chi-sono">Chi sono</a>
+          <a href="#percorsi">Percorsi</a>
+          <a href="#eventi">Eventi</a>
+          <a href="#galleria">Galleria</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center">
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Attiva tema scuro"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+              />
+            </svg>
+          </button>
+
+          <button
+            class="mobile-nav-toggle"
+            type="button"
+            id="mobileMenuBtn"
+            aria-expanded="false"
+            aria-controls="navPanel"
+          >
+            ☰
+          </button>
+        </div>
+
+        <div class="nav-panel" id="navPanel" aria-label="Menu mobile">
+          <a href="#chi-sono">Chi sono</a>
+          <a href="#percorsi">Percorsi</a>
+          <a href="#eventi">Eventi</a>
+          <a href="#galleria">Galleria</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contatti">Contatti</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenuto">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="site-shell hero-grid">
+          <div class="hero-card">
+            <img
+              src="./assets/Scala.jpg"
+              alt="Scala luminosa tra le nuvole con persone che salgono"
+              width="1429"
+              height="803"
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="hero-text">
+            <div class="eyebrow">
+              Eventi dal vivo · Guarigione quantica di gruppo
+            </div>
+            <h1>Guarigione quantica</h1>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#eventi">Vedi gli eventi</a>
+              <a class="btn btn-secondary" href="#contatti">
+                Iscriviti o chiedi informazioni
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUI puoi reinserire le altre sezioni già definite:
+           Chi sono, Percorsi, Eventi, Galleria, FAQ, Contatti,
+           copiandole dall'HTML precedente se vuoi mantenere quei contenuti. -->
+    </main>
+
+    <footer>
+      © 2026 · Guarigione quantica · Contatti e presenza reale
+    </footer>
+
+    <script>
+      (function () {
+        const toggle = document.querySelector("[data-theme-toggle]");
+        const root = document.documentElement;
+        let mode = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        root.setAttribute("data-theme", mode);
+
+        if (toggle) {
+          const setIcon = () => {
+            toggle.setAttribute(
+              "aria-label",
+              "Passa al tema " + (mode === "dark" ? "chiaro" : "scuro")
+            );
+          };
+          setIcon();
+          toggle.addEventListener("click", () => {
+            mode = mode === "dark" ? "light" : "dark";
+            root.setAttribute("data-theme", mode);
+            setIcon();
+          });
+        }
+
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+          header.classList.toggle("scrolled", window.scrollY > 24);
+        });
+
+        const mobileBtn = document.getElementById("mobileMenuBtn");
+        mobileBtn?.addEventListener("click", () => {
+          const open = header.classList.toggle("open");
+          mobileBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        document
+          .querySelectorAll(".nav-panel a")
+          .forEach((a) =>
+            a.addEventListener("click", () =>
+              header.classList.remove("open")
+            )
+          );
+      })();
+    </script>
+  </body>
+</html>
