@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patch Brochure · Guarigione Quantica</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f0f1a;
+    color: #e0e0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: .4rem; color: #c9b8ff; }
+  p.sub { color: #888; font-size: .95rem; margin-bottom: 2rem; }
+
+  #drop-zone {
+    border: 2.5px dashed #5a4fcf;
+    border-radius: 16px;
+    padding: 3rem 4rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .25s;
+    background: #16162a;
+    width: 100%;
+    max-width: 480px;
+  }
+  #drop-zone.over { border-color: #a78bfa; background: #1e1e3a; }
+  #drop-zone .icon { font-size: 3rem; margin-bottom: 1rem; }
+  #drop-zone p { color: #aaa; font-size: 1rem; }
+  #drop-zone strong { color: #c9b8ff; }
+  #file-input { display: none; }
+
+  #log {
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 480px;
+    background: #16162a;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    font-size: .88rem;
+    line-height: 1.8;
+    display: none;
+  }
+  .ok  { color: #6ee7b7; }
+  .err { color: #f87171; }
+  .inf { color: #93c5fd; }
+
+  #download-btn {
+    display: none;
+    margin-top: 1.2rem;
+    padding: .85rem 2.5rem;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  #download-btn:hover { opacity: .88; }
+</style>
+</head>
+<body>
+
+<h1>🔧 Patch Brochure PNG</h1>
+<p class="sub">Trascina qui il tuo <strong>index.html</strong> — lo modifico e te lo ridò pronto</p>
+
+<div id="drop-zone" onclick="document.getElementById('file-input').click()">
+  <div class="icon">📂</div>
+  <p><strong>Clicca o trascina</strong> il file <code>index.html</code> qui</p>
+  <input type="file" id="file-input" accept=".html">
+</div>
+
+<div id="log"></div>
+<button id="download-btn">⬇️ Scarica index.html modificato</button>
+
+<script>
+const zone = document.getElementById('drop-zone');
+const input = document.getElementById('file-input');
+const log   = document.getElementById('log');
+const dlBtn = document.getElementById('download-btn');
+
+let patchedContent = '';
+
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('over'); processFile(e.dataTransfer.files[0]); });
+input.addEventListener('change', () => processFile(input.files[0]));
+
+function addLog(msg, type='inf') {
+  log.style.display = 'block';
+  log.innerHTML += `<div class="${type}">${msg}</div>`;
+}
+
+function processFile(file) {
+  if (!file || !file.name.endsWith('.html')) {
+    addLog('❌ Carica un file .html valido', 'err'); return;
+  }
+  log.innerHTML = '';
+  log.style.display = 'block';
+  dlBtn.style.display = 'none';
+  addLog(`📄 File caricato: <strong>${file.name}</strong> (${(file.size/1024).toFixed(0)} KB)`);
+
+  const reader = new FileReader();
+  reader.onload = e => patch(e.target.result);
+  reader.readAsText(file, 'utf-8');
+}
+
+function patch(html) {
+  let out = html;
+  let changes = 0;
+
+  // ── 1. Aggiungi img a broData per ogni città ──────────────────────────────
+  const cities = {
+    firenze:  'brochure-firenze.png',
+    lucca:    'brochure-lucca.png',
+    piacenza: 'brochure-piacenza.png',
+    vicenza:  'brochure-vicenza.png'
+  };
+
+  for (const [city, file] of Object.entries(cities)) {
+    // Controlla se img è già presente
+    const alreadyRe = new RegExp(`${city}:\\s*\\{[^}]*img\\s*:`);
+    if (alreadyRe.test(out)) {
+      addLog(`ℹ️ ${city}: campo <code>img</code> già presente, salto`, 'inf');
+      continue;
+    }
+    // Inserisci img come prima proprietà del blocco città
+    const re = new RegExp(`(${city}\\s*:\\s*\\{)`, 'g');
+    const before = out;
+    out = out.replace(re, `$1\n        img: './${file}',`);
+    if (out !== before) {
+      addLog(`✅ ${city}: aggiunto <code>img: './${file}'</code>`, 'ok');
+      changes++;
+    } else {
+      addLog(`⚠️ ${city}: blocco non trovato nel broData`, 'err');
+    }
+  }
+
+  // ── 2. Aggiungi riga broImg in openBro ────────────────────────────────────
+  const broImgLine = `document.getElementById('broImg').src = d.img;`;
+  if (out.includes(broImgLine)) {
+    addLog('ℹ️ openBro: riga broImg già presente, salto', 'inf');
+  } else {
+    const anchor = `document.getElementById('broOverlay').classList.add('open');`;
+    if (out.includes(anchor)) {
+      out = out.replace(anchor, broImgLine + '\n      ' + anchor);
+      addLog('✅ openBro: aggiunta riga <code>broImg.src = d.img</code>', 'ok');
+      changes++;
+    } else {
+      addLog('⚠️ openBro: riga broOverlay non trovata — controlla manualmente', 'err');
+    }
+  }
+
+  // ── 3. Aggiungi tag <img id="broImg"> nel modal ───────────────────────────
+  const broImgTag = `<img id="broImg" src="" alt="Brochure" style="width:100%;max-width:420px;display:block;margin:0 auto 1.2rem;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.35);">`;
+  if (out.includes('id="broImg"')) {
+    addLog('ℹ️ Modal: tag <code>&lt;img id="broImg"&gt;</code> già presente, salto', 'inf');
+  } else {
+    // Cerca l'apertura del contenuto del modal (dopo broOverlay o dopo la prima div interna)
+    const targets = [
+      `id="broCity"`,
+      `id="broTitle"`,
+      `id="broMeta"`,
+    ];
+    let inserted = false;
+    for (const t of targets) {
+      if (out.includes(t)) {
+        // Trova il tag che contiene questo id e inserisci l'img prima di esso
+        const re = new RegExp(`(<[^>]+id="${t.replace('id="','').replace('"','')}"[^>]*>)`);
+        const before = out;
+        out = out.replace(re, broImgTag + '\n      $1');
+        if (out !== before) {
+          addLog(`✅ Modal: tag <code>&lt;img id="broImg"&gt;</code> inserito prima di <code>#${t.replace('id="','').replace('"','')}</code>`, 'ok');
+          changes++;
+          inserted = true;
+          break;
+        }
+      }
+    }
+    if (!inserted) {
+      addLog('⚠️ Modal: punto di inserimento non trovato — aggiungi manualmente il tag img', 'err');
+    }
+  }
+
+  // ── Riepilogo ─────────────────────────────────────────────────────────────
+  if (changes === 0) {
+    addLog('🎉 Nessuna modifica necessaria — il file era già aggiornato!', 'ok');
+  } else {
+    addLog(`<strong>✔ ${changes} modifica/he applicate con successo!</strong>`, 'ok');
+    addLog('👆 Scarica il file e caricalo su GitHub', 'inf');
+  }
+
+  patchedContent = out;
+  dlBtn.style.display = 'inline-block';
+}
+
+dlBtn.addEventListener('click', () => {
+  const blob = new Blob([patchedContent], { type: 'text/html;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'index.html';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
