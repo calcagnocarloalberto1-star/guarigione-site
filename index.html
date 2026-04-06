@@ -844,7 +844,9 @@
     <div class="bro-modal">
       <div class="bro-head">
         <div>
-          <div class="eyebrow" id="broCity"></div>
+          <img id="broImg" src="" alt="Brochure" style="width:100%;border-radius:12px;margin-bottom:.8rem;display:none">
+      <a id="broDownload" href="" download style="display:none;margin-bottom:1rem;padding:.6rem 1.4rem;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border-radius:50px;font-weight:600;font-size:.9rem;text-decoration:none;align-items:center;gap:.4rem">⬇️ Scarica Brochure</a>
+      <div class="eyebrow" id="broCity"></div>
           <h2 id="broTitle"></h2>
         </div>
         <button class="bro-close" onclick="closeBro()">✕</button>
@@ -935,6 +937,7 @@
 
     const broData = {
       firenze: {
+        img: './brochure-firenze.png',
         city: 'Firenze Quantica',
         title: 'Guarigione quantica di gruppo',
         meta: '<strong>📅 Domenica 12 aprile 2026 · 10:00–18:00</strong><br>📍 Circolo La Loggetta, Via Aretina 301, Firenze (FI)',
@@ -951,6 +954,7 @@
         staff: 'base'
       },
       lucca: {
+        img: './brochure-lucca.png',
         city: 'Lucca Quantica',
         title: 'Danza dei 7 Veli \u2013 Il Risveglio dell\u2019Essenza',
         meta: '<strong>📅 Domenica 19 aprile 2026 · 10:00–18:00</strong><br>📍 Via Ludovica 1658, Sesto di Moriano, Lucca (LU)',
@@ -967,6 +971,7 @@
         staff: 'lucca'
       },
       vicenza: {
+        img: './brochure-vicenza.png',
         city: 'Vicenza',
         title: 'Guarigione quantica di gruppo',
         meta: '<strong>📅 Domenica 31 maggio 2026 · 10:00–18:00</strong><br>📍 Strada di Saviabona 328, Vicenza (VI)',
@@ -983,6 +988,7 @@
         staff: 'base'
       },
       piacenza: {
+        img: './brochure-piacenza.png',
         city: 'Piacenza Quantica',
         title: 'Guarigione quantica di gruppo',
         meta: '<strong>📅 Sabato 30 maggio 2026 · 10:00–18:00</strong><br>📍 Il Soffio Vitale, Piacenza (PC)',
@@ -1006,6 +1012,10 @@
       document.getElementById('broProgram').innerHTML = d.program.map(i => `<li>${i}</li>`).join('');
       document.getElementById('broStaff').innerHTML = d.staff === 'lucca' ? staffLucca : staffBase;
       document.getElementById('broWa').href = `https://wa.me/393423033404?text=${d.wa}`;
+      document.getElementById('broImg').src = d.img || '';
+      document.getElementById('broImg').style.display = d.img ? 'block' : 'none';
+      document.getElementById('broDownload').style.display = d.img ? 'inline-flex' : 'none';
+      document.getElementById('broDownload').href = d.img || '';
       document.getElementById('broOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
